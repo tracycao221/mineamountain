@@ -63,6 +63,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7762683401538954"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={`${inter.variable} font-sans`}>
         <style>{`.ad-shell{min-height:90px}.ad-host{min-height:90px}`}</style>
         {adsenseClientId ? (
