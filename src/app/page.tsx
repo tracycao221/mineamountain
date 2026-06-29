@@ -13,6 +13,7 @@ import {
   videoGuides,
   wikiCards
 } from "@/data/site";
+import { expansionPageCards } from "@/data/seo-expansion";
 import { FaqJsonLd, SoftwareApplicationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader, TrustNote } from "@/components/ui/content";
 import { BrandHero } from "@/components/home/BrandHero";
@@ -159,6 +160,23 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-12">
+        <SectionHeader
+          eyebrow="New SEO guides"
+          title="More Mine a Mountain answers"
+          copy="Use these focused pages for codes, tips, strategy, upgrades, levels, FAQ, updates, and walkthrough searches."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          {expansionPageCards.map((page) => (
+            <Link key={page.href} href={page.href} className="content-card">
+              <span className="mini-label">{page.eyebrow}</span>
+              <h3 className="mt-3 text-lg font-bold text-white">{page.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">{page.description}</p>
+            </Link>
+          ))}
         </div>
       </section>
 
