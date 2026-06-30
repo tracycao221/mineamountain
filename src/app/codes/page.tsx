@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { activeCodes, faqs, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
@@ -86,6 +87,24 @@ export default function CodesPage() {
             copy="Codes should show the date checked, source type, and conflict notes when trackers disagree. Never hide uncertainty."
           />
         </article>
+      </section>
+
+      <section className="mt-10 grid gap-4 md:grid-cols-3">
+        <Link href="/codes/guide" className="content-card">
+          <span className="mini-label">Codes guide</span>
+          <h2 className="mt-3 text-lg font-bold text-white">How code claims are checked</h2>
+          <p className="mt-2 text-sm leading-6 text-white/66">Use the codes guide to understand source checks before trying unverified reward strings.</p>
+        </Link>
+        <Link href="/updates/update-log" className="content-card">
+          <span className="mini-label">Update log</span>
+          <h2 className="mt-3 text-lg font-bold text-white">Watch update moments</h2>
+          <p className="mt-2 text-sm leading-6 text-white/66">Code claims often appear around visible game changes, so pair this page with the update log.</p>
+        </Link>
+        <Link href="/faq" className="content-card">
+          <span className="mini-label">FAQ</span>
+          <h2 className="mt-3 text-lg font-bold text-white">Quick code answers</h2>
+          <p className="mt-2 text-sm leading-6 text-white/66">Read short answers for codes, upgrades, updates, and source boundaries.</p>
+        </Link>
       </section>
     </main>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { expansionPages } from "@/data/seo-expansion";
 import { guideClusters, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
@@ -33,6 +34,23 @@ export default function GuidesPage() {
               <span className="mini-label">{guide.eyebrow}</span>
               <h2 className="mt-3 text-xl font-bold text-white">{guide.title}</h2>
               <p className="mt-2 text-sm leading-6 text-white/65">{guide.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Upgrade guides"
+          title="Choose the upgrade problem"
+          copy="These pages split upgrade intent into warmth, pickaxe, backpack, strategy, and route planning without inventing exact values."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {[expansionPages.pickaxeGuide, expansionPages.backpackGuide, expansionPages.strategy].map((page) => (
+            <Link key={page.canonical} href={page.canonical} className="content-card">
+              <span className="mini-label">{page.eyebrow}</span>
+              <h2 className="mt-3 text-xl font-bold text-white">{page.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-white/65">{page.description}</p>
             </Link>
           ))}
         </div>

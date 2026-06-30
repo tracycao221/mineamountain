@@ -42,6 +42,45 @@ export function ExpansionPage({
         </div>
       </section>
 
+      {page.quickChecks?.length ? (
+        <section className="mt-10">
+          <SectionHeader
+            eyebrow="Quick checks"
+            title="Before you change your route"
+            copy="Use these checks to make the page actionable without relying on unverified numbers."
+          />
+          <div className="mt-6 grid gap-3">
+            {page.quickChecks.map((check) => (
+              <div key={check} className="row-link">
+                <span>
+                  <strong>{check}</strong>
+                  <small>Use this as a practical Mine a Mountain decision check before moving to the next guide.</small>
+                </span>
+                <span aria-hidden="true">-&gt;</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {page.faqs?.length ? (
+        <section className="mt-10">
+          <SectionHeader
+            eyebrow="FAQ"
+            title="Quick answers"
+            copy="Short answers for related Mine a Mountain search questions."
+          />
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {page.faqs.map((faq) => (
+              <article key={faq.q} className="content-card">
+                <h2 className="text-lg font-bold text-white">{faq.q}</h2>
+                <p className="mt-2 text-sm leading-6 text-white/66">{faq.a}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="mt-10">
         <SectionHeader
           eyebrow="Related pages"

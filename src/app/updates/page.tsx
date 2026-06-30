@@ -74,6 +74,9 @@ export default function UpdatesPage() {
           <Link href="/sources" className="button-secondary">
             View sources
           </Link>
+          <Link href="/updates/update-log" className="button-secondary">
+            Update log
+          </Link>
         </div>
       </PageIntro>
 
