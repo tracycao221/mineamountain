@@ -39,11 +39,16 @@ const routes: Array<{
   { path: "/disclosure", changeFrequency: "monthly", priority: 0.3 }
 ];
 
+function canonicalUrl(path: string) {
+  const normalizedPath = path === "" || path === "/" ? "/" : `${path.replace(/\/$/, "")}/`;
+  return `${siteConfig.domain}${normalizedPath}`;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const seen = new Set<string>();
   return routes
     .map((route) => ({
-      url: `${siteConfig.domain}${route.path}`,
+      url: canonicalUrl(route.path),
       lastModified: new Date(),
       changeFrequency: route.changeFrequency,
       priority: route.priority
