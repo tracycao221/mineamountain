@@ -34,8 +34,10 @@ const routes: Array<{
   { path: "/updates", changeFrequency: "daily", priority: 0.75 },
   { path: "/updates/update-log", changeFrequency: "daily", priority: 0.72 },
   { path: "/sources", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/about", changeFrequency: "monthly", priority: 0.4 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.3 },
   { path: "/privacy", changeFrequency: "monthly", priority: 0.3 },
+  { path: "/terms", changeFrequency: "monthly", priority: 0.3 },
   { path: "/disclosure", changeFrequency: "monthly", priority: 0.3 }
 ];
 
