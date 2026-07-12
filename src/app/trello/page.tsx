@@ -7,12 +7,12 @@ import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Trello, Discord & Wiki Status`,
-  description: `Official-link status for ${siteConfig.gameName} Trello, Discord, wiki, Roblox updates, codes, and community sources.`,
-  alternates: { canonical: `${siteConfig.domain}/trello` },
+  description: `Official-link status for ${siteConfig.gameName} Trello, Discord, wiki, Roblox updates, codes, and community sources without fake invite claims.`,
+  alternates: { canonical: `${siteConfig.domain}/trello/` },
   openGraph: {
     title: `${siteConfig.gameName} Trello, Discord & Wiki Status`,
     description: `Check which ${siteConfig.gameName} Roblox, Trello, Discord, and Wiki sources are verified, pending, or not confirmed.`,
-    url: `${siteConfig.domain}/trello`,
+    url: `${siteConfig.domain}/trello/`,
     images: ["/trello/opengraph-image"]
   },
   twitter: {
@@ -64,8 +64,8 @@ export default function TrelloStatusPage() {
       <section className="mt-10">
         <SectionHeader
           eyebrow="Official links"
-          title="Source status"
-          copy="This page should be updated after research confirms the creator-owned links. Until then, uncertain links stay clearly labelled."
+          title="Source status for Discord, Trello, and wiki claims"
+          copy="This page should be updated after research confirms creator-owned links. Until then, uncertain links stay clearly labelled and should not be used to publish code rewards."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {statusRows.map((item) => {
@@ -104,7 +104,7 @@ export default function TrelloStatusPage() {
         <Link href="/codes" className="content-card">
           <span className="mini-label">Freshness</span>
           <h2 className="mt-3 text-xl font-bold text-white">Codes verification</h2>
-          <p className="mt-2 text-sm leading-6 text-white/65">Check active and expired rewards against official update surfaces before publishing code claims.</p>
+          <p className="mt-2 text-sm leading-6 text-white/65">Check Mine a Mountain codes and code screenshots against official update surfaces before publishing reward claims.</p>
         </Link>
         <Link href="/tier-list" className="content-card">
           <span className="mini-label">Meta</span>
@@ -115,6 +115,19 @@ export default function TrelloStatusPage() {
           <span className="mini-label">Editorial</span>
           <h2 className="mt-3 text-xl font-bold text-white">Source checklist</h2>
           <p className="mt-2 text-sm leading-6 text-white/65">Keep official, community, video, Reddit, and guide-site evidence separated so updates stay auditable.</p>
+        </Link>
+      </section>
+
+      <section className="mt-10 grid gap-4 md:grid-cols-2">
+        <article className="content-card">
+          <span className="mini-label">Fake-link safety</span>
+          <h2 className="mt-3 text-xl font-bold text-white">Do not treat Discord screenshots as code proof</h2>
+          <p className="mt-2 text-sm leading-6 text-white/66">A Mine a Mountain Discord code claim needs a verified creator-owned source before it should move to the active code list.</p>
+        </article>
+        <Link href="/wiki" className="content-card">
+          <span className="mini-label">Wiki</span>
+          <h2 className="mt-3 text-xl font-bold text-white">Use wiki notes for mechanics</h2>
+          <p className="mt-2 text-sm leading-6 text-white/66">Keep crystals, warmth, pickaxe, backpack, and update notes separate from unverified community-link claims.</p>
         </Link>
       </section>
     </main>

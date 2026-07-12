@@ -262,12 +262,16 @@ export const faqs: Record<"home" | "codes" | "tierList" | "calculator", FaqItem[
   ],
   codes: [
     {
-      q: `Where do ${gameConfig.name} codes come from?`,
-      a: "Use the Roblox game page, creator-owned channels when verified, and trusted community reports only after they are checked."
+      q: `Where do ${gameConfig.name} codes and code drops come from?`,
+      a: "Use the official Roblox game page first, then creator-owned channels if they are verified. Community reports should stay unlisted until the exact Mine a Mountain code and reward can be checked."
     },
     {
       q: "Why are there no active codes listed?",
       a: "No active Mine a Mountain codes were verified during the latest check. New codes should only be added after an official or trusted source confirms them."
+    },
+    {
+      q: "Should I trust a Mine a Mountain Discord code screenshot?",
+      a: "Only if the Discord or post can be tied back to the creator, Roblox page, or another reliable source. Random screenshots should not be treated as active codes."
     }
   ],
   tierList: [

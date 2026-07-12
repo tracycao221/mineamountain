@@ -7,7 +7,7 @@ import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Wiki`,
   description: `${siteConfig.gameName} wiki hub for items, maps, systems, builds, rewards, and Roblox game entities.`,
-  alternates: { canonical: `${siteConfig.domain}/wiki` }
+  alternates: { canonical: `${siteConfig.domain}/wiki/` }
 };
 
 export default function WikiPage() {
@@ -36,6 +36,19 @@ export default function WikiPage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      <section className="mt-10 grid gap-4 md:grid-cols-2">
+        <Link href="/codes" className="content-card">
+          <span className="mini-label">Codes</span>
+          <h2 className="mt-3 text-xl font-bold text-white">Check code status before reward claims</h2>
+          <p className="mt-2 text-sm leading-6 text-white/66">Use the codes page for active-code checks, no-fake-code rules, and exact reward verification.</p>
+        </Link>
+        <Link href="/trello" className="content-card">
+          <span className="mini-label">Discord</span>
+          <h2 className="mt-3 text-xl font-bold text-white">Verify source links</h2>
+          <p className="mt-2 text-sm leading-6 text-white/66">Use the Trello and Discord status page before trusting community screenshots or unofficial wiki mirrors.</p>
+        </Link>
       </section>
     </main>
   );

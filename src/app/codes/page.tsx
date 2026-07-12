@@ -5,19 +5,19 @@ import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.gameName} Codes`,
-  description: `Active ${siteConfig.gameName} codes, rewards, redemption steps, and source confidence notes.`,
-  alternates: { canonical: `${siteConfig.domain}/codes` },
+  title: `${siteConfig.gameName} Codes & Code Status`,
+  description: `Mine a Mountain codes and code status with active-code checks, no-fake-code policy, redeem steps, source-watch notes, and Discord verification guidance.`,
+  alternates: { canonical: `${siteConfig.domain}/codes/` },
   openGraph: {
-    title: `${siteConfig.gameName} Codes`,
-    description: `Active ${siteConfig.gameName} codes, rewards, redemption steps, and source confidence notes.`,
-    url: `${siteConfig.domain}/codes`,
+    title: `${siteConfig.gameName} Codes and Code Status`,
+    description: `Active ${siteConfig.gameName} codes, code rewards, redemption steps, and source confidence notes.`,
+    url: `${siteConfig.domain}/codes/`,
     images: ["/codes/opengraph-image"]
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.gameName} Codes`,
-    description: `Active ${siteConfig.gameName} codes, rewards, redemption steps, and source confidence notes.`,
+    title: `${siteConfig.gameName} Codes and Code Status`,
+    description: `Active ${siteConfig.gameName} codes, code rewards, redemption steps, and source confidence notes.`,
     images: ["/codes/opengraph-image"]
   }
 };
@@ -31,16 +31,16 @@ export default function CodesPage() {
 
       <PageIntro
         eyebrow="Freshness-sensitive"
-        title={`${siteConfig.gameName} Codes`}
-        description="Use this page to see whether any Mine a Mountain codes are verified today. Unconfirmed reward names stay off the active list until a source checks out."
+        title={`${siteConfig.gameName} Codes and Code Status`}
+        description="Use this page to check Mine a Mountain codes, code rewards, and source status. Unconfirmed reward strings stay off the active list until a reliable source checks out."
       />
 
       <section className="mt-10">
-        <SectionHeader
-          eyebrow="Active list"
-          title="Verified active codes"
-          copy="No active code is listed unless it has a checked source. That keeps copied or guessed reward codes out of the table."
-        />
+          <SectionHeader
+            eyebrow="Active list"
+            title="Verified active Mine a Mountain codes"
+            copy="No active Mine a Mountain code is listed unless it has a checked source. That keeps copied screenshots, guessed reward strings, and unrelated Roblox codes out of the table."
+          />
         {activeCodes.length ? (
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {activeCodes.map((code) => (
@@ -59,8 +59,8 @@ export default function CodesPage() {
             <span className="mini-label">Checked June 27, 2026</span>
             <h2 className="mt-3 text-2xl font-extrabold text-white">No verified active codes yet</h2>
             <p className="mt-3 text-sm leading-6 text-white/68">
-              We checked the Roblox game listing and sampled search results, but did not find a reliable active Mine a Mountain code.
-              When a code is confirmed, it belongs here with its reward, source, and checked date.
+              We checked the Roblox game listing and public source surfaces, but did not find a reliable active Mine a Mountain code.
+              When a code is confirmed, it belongs here with its reward, source, and checked date. Until then, this page should answer code searches without inventing rewards.
             </p>
           </article>
         )}
@@ -70,7 +70,7 @@ export default function CodesPage() {
         <article className="content-card">
           <SectionHeader
             eyebrow="Redeem flow"
-            title="How to redeem codes"
+            title="How to redeem Mine a Mountain codes"
             copy="Update these steps after checking the live in-game UI. Roblox code flows often move between shop, settings, menu, and event panels."
           />
           <ol className="mt-5 grid gap-3 text-white/70">
@@ -83,10 +83,37 @@ export default function CodesPage() {
         <article className="content-card">
           <SectionHeader
             eyebrow="Verification"
-            title="Code freshness policy"
-            copy="Codes should show the date checked, source type, and conflict notes when trackers disagree. Never hide uncertainty."
+            title="Where Mine a Mountain codes are announced"
+            copy="Code claims should be checked against the Roblox page and creator-owned surfaces before they appear as active rewards."
           />
+          <div className="mt-5 grid gap-3 text-sm text-white/66">
+            <p>Use the official Roblox page as the source of record for title, creator, and live update wording.</p>
+            <p>Use the Trello and Discord status page to avoid fake community links and copied code screenshots.</p>
+            <p>Keep the no-fake-codes policy visible when searches spike before any active reward is verified.</p>
+          </div>
         </article>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="FAQ"
+          title="Mine a Mountain code checks"
+          copy="Short answers for players searching both Mine a Mountain codes and Mine a Mountain code."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <article className="content-card">
+            <h2 className="text-lg font-bold text-white">Are there active codes?</h2>
+            <p className="mt-2 text-sm leading-6 text-white/66">No verified active Mine a Mountain codes are listed right now. Add one only after a reliable source confirms the exact string and reward.</p>
+          </article>
+          <article className="content-card">
+            <h2 className="text-lg font-bold text-white">Why not list rumored rewards?</h2>
+            <p className="mt-2 text-sm leading-6 text-white/66">Rumored Roblox rewards waste player time. This page separates search intent from actual checked code evidence.</p>
+          </article>
+          <article className="content-card">
+            <h2 className="text-lg font-bold text-white">Where should I check next?</h2>
+            <p className="mt-2 text-sm leading-6 text-white/66">Watch official update text, verified creator channels, and the source-status page before trusting a Discord screenshot.</p>
+          </article>
+        </div>
       </section>
 
       <section className="mt-10 grid gap-4 md:grid-cols-3">
@@ -99,6 +126,11 @@ export default function CodesPage() {
           <span className="mini-label">Update log</span>
           <h2 className="mt-3 text-lg font-bold text-white">Watch update moments</h2>
           <p className="mt-2 text-sm leading-6 text-white/66">Code claims often appear around visible game changes, so pair this page with the update log.</p>
+        </Link>
+        <Link href="/trello" className="content-card">
+          <span className="mini-label">Discord status</span>
+          <h2 className="mt-3 text-lg font-bold text-white">Verify community links</h2>
+          <p className="mt-2 text-sm leading-6 text-white/66">Check whether a Discord, Trello, or wiki source is official before trusting code claims.</p>
         </Link>
         <Link href="/faq" className="content-card">
           <span className="mini-label">FAQ</span>
