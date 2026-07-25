@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { runtimeConfig } from "@/lib/runtime-config";
 
-type BannerSize = "300x250" | "320x50" | "728x90";
+type BannerSize = "160x300" | "160x600" | "300x250" | "320x50" | "468x60" | "728x90";
 
 type BannerConfig = {
   height: number;
@@ -13,6 +14,18 @@ type BannerConfig = {
 };
 
 const bannerConfigs: Record<BannerSize, BannerConfig> = {
+  "160x300": {
+    width: 160,
+    height: 300,
+    key: runtimeConfig.adsterraBanner160x300Key,
+    scriptUrl: runtimeConfig.adsterraBanner160x300ScriptUrl
+  },
+  "160x600": {
+    width: 160,
+    height: 600,
+    key: runtimeConfig.adsterraBanner160x600Key,
+    scriptUrl: runtimeConfig.adsterraBanner160x600ScriptUrl
+  },
   "300x250": {
     width: 300,
     height: 250,
@@ -25,10 +38,16 @@ const bannerConfigs: Record<BannerSize, BannerConfig> = {
     key: runtimeConfig.adsterraBanner320x50Key,
     scriptUrl: runtimeConfig.adsterraBanner320x50ScriptUrl
   },
+  "468x60": {
+    width: 468,
+    height: 60,
+    key: runtimeConfig.adsterraBanner468x60Key,
+    scriptUrl: runtimeConfig.adsterraBanner468x60ScriptUrl
+  },
   "728x90": {
     width: 728,
     height: 90,
-    key: runtimeConfig.adsterraBanner728x90Key || runtimeConfig.adsterraLeaderboardId,
+    key: runtimeConfig.adsterraBanner728x90Key,
     scriptUrl: runtimeConfig.adsterraBanner728x90ScriptUrl
   }
 };
@@ -44,6 +63,8 @@ declare global {
     };
   }
 }
+
+let bannerLoadQueue = Promise.resolve();
 
 function normalizeScriptUrl(url?: string) {
   if (!url) return undefined;
@@ -91,22 +112,49 @@ function AdsterraBannerUnit({
     const host = hostRef.current;
     if (!host || !scriptUrl || !config.key) return;
 
-    host.replaceChildren();
-    window.atOptions = {
-      key: config.key,
-      format: "iframe",
-      height: config.height,
-      width: config.width,
-      params: {}
-    };
+    let cancelled = false;
+    let releaseActiveLoad: (() => void) | undefined;
 
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = scriptUrl;
-    script.async = false;
-    host.appendChild(script);
+    bannerLoadQueue = bannerLoadQueue.catch(() => undefined).then(
+      () =>
+        new Promise<void>((resolve) => {
+          if (cancelled) {
+            resolve();
+            return;
+          }
+
+          host.replaceChildren();
+          window.atOptions = {
+            key: config.key,
+            format: "iframe",
+            height: config.height,
+            width: config.width,
+            params: {}
+          };
+
+          let settled = false;
+          const finish = () => {
+            if (settled) return;
+            settled = true;
+            window.clearTimeout(fallbackTimer);
+            resolve();
+          };
+          releaseActiveLoad = finish;
+
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.src = scriptUrl;
+          script.async = false;
+          script.addEventListener("load", finish, { once: true });
+          script.addEventListener("error", finish, { once: true });
+          const fallbackTimer = window.setTimeout(finish, 15_000);
+          host.appendChild(script);
+        })
+    );
 
     return () => {
+      cancelled = true;
+      releaseActiveLoad?.();
       host.replaceChildren();
     };
   }, [config.height, config.key, config.width, scriptUrl]);
@@ -128,12 +176,18 @@ function usePreferredLeaderboardSize() {
   const [size, setSize] = useState<BannerSize | null>(null);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const tabletQuery = window.matchMedia("(min-width: 500px)");
     const chooseSize = () => {
       const desktopConfig = bannerConfigs["728x90"];
+      const tabletConfig = bannerConfigs["468x60"];
       const mobileConfig = bannerConfigs["320x50"];
-      if (mediaQuery.matches && (desktopConfig.key || desktopConfig.scriptUrl)) {
+      if (desktopQuery.matches && (desktopConfig.key || desktopConfig.scriptUrl)) {
         setSize("728x90");
+        return;
+      }
+      if (tabletQuery.matches && (tabletConfig.key || tabletConfig.scriptUrl)) {
+        setSize("468x60");
         return;
       }
       if (mobileConfig.key || mobileConfig.scriptUrl) {
@@ -148,8 +202,12 @@ function usePreferredLeaderboardSize() {
     };
 
     chooseSize();
-    mediaQuery.addEventListener("change", chooseSize);
-    return () => mediaQuery.removeEventListener("change", chooseSize);
+    desktopQuery.addEventListener("change", chooseSize);
+    tabletQuery.addEventListener("change", chooseSize);
+    return () => {
+      desktopQuery.removeEventListener("change", chooseSize);
+      tabletQuery.removeEventListener("change", chooseSize);
+    };
   }, []);
 
   return size;
@@ -198,10 +256,6 @@ function AdsterraNativeUnit({
   );
 }
 
-export function AdsterraSmartLink() {
-  return null;
-}
-
 export function AdsterraSmartLinkAnchor({
   children = "Sponsored link",
   className = ""
@@ -247,12 +301,110 @@ export function AdsterraNative1() {
   );
 }
 
-export function AdsterraNative2() {
+function usePreferredRailSize() {
+  const [size, setSize] = useState<"160x300" | "160x600" | null>(null);
+
+  useEffect(() => {
+    const widthQuery = window.matchMedia("(min-width: 1680px)");
+    const heightQuery = window.matchMedia("(min-height: 760px)");
+    const chooseSize = () => {
+      if (!runtimeConfig.adsterraEnableStickyRail || !widthQuery.matches) {
+        setSize(null);
+        return;
+      }
+      setSize(heightQuery.matches ? "160x600" : "160x300");
+    };
+
+    chooseSize();
+    widthQuery.addEventListener("change", chooseSize);
+    heightQuery.addEventListener("change", chooseSize);
+    return () => {
+      widthQuery.removeEventListener("change", chooseSize);
+      heightQuery.removeEventListener("change", chooseSize);
+    };
+  }, []);
+
+  return size;
+}
+
+function AdsterraRail() {
+  const size = usePreferredRailSize();
+  if (!size) return null;
   return (
-    <AdsterraNativeUnit
-      containerId={runtimeConfig.adsterraNative2Id}
-      scriptUrl={runtimeConfig.adsterraNative2ScriptUrl}
-    />
+    <div className="ad-sticky-rail">
+      <AdsterraBannerUnit size={size} />
+    </div>
+  );
+}
+
+const cleanRoutePrefixes = ["/about", "/contact", "/disclosure", "/privacy", "/sources", "/terms"];
+
+function isCleanRoute(pathname: string) {
+  return cleanRoutePrefixes.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
+}
+
+function appendExternalScript(id: string, src: string) {
+  if (document.getElementById(id)) return;
+  const script = document.createElement("script");
+  script.id = id;
+  script.src = src;
+  script.async = true;
+  document.body.appendChild(script);
+}
+
+export function AdsterraGlobalScripts() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (isCleanRoute(pathname)) return;
+
+    if (runtimeConfig.adsterraEnableSocialBar && runtimeConfig.adsterraSocialBarScriptUrl) {
+      appendExternalScript("adsterra-social-bar", runtimeConfig.adsterraSocialBarScriptUrl);
+    }
+
+    if (!runtimeConfig.adsterraEnablePopunder || !runtimeConfig.adsterraPopunderScriptUrl) return;
+
+    const storageKey = "mineamountain:adsterra-pageviews";
+    const currentPageviews = Number.parseInt(sessionStorage.getItem(storageKey) ?? "0", 10) || 0;
+    const nextPageviews = currentPageviews + 1;
+    sessionStorage.setItem(storageKey, String(nextPageviews));
+    if (nextPageviews < runtimeConfig.adsterraPopunderMinPageviews) return;
+
+    const timer = window.setTimeout(() => {
+      appendExternalScript("adsterra-popunder", runtimeConfig.adsterraPopunderScriptUrl);
+    }, runtimeConfig.adsterraPopunderDelayMs);
+
+    return () => window.clearTimeout(timer);
+  }, [pathname]);
+
+  return null;
+}
+
+export function AdsterraPageFrame({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  if (isCleanRoute(pathname)) return <>{children}</>;
+
+  return (
+    <>
+      <div className="ad-global-top">
+        <AdsterraLeaderboard />
+      </div>
+      <AdsterraRail />
+      {children}
+      <section className="ad-global-footer" aria-label="Sponsored content">
+        <div className="ad-global-native">
+          <AdsterraNative1 />
+        </div>
+        <div className="ad-global-rectangle">
+          <AdsterraBanner />
+          <AdsterraSmartLinkAnchor className="ad-sponsored-link">
+            Sponsored game offer
+          </AdsterraSmartLinkAnchor>
+        </div>
+      </section>
+    </>
   );
 }
 

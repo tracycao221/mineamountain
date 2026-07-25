@@ -28,7 +28,7 @@ export const gameConfig: GameConfig = {
     trello: "#"
   },
   ads: {
-    publisher: "Adsterra + Google AdSense",
+    publisher: "Adsterra",
     usesRuntimeConfig: true
   }
 };

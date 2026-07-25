@@ -258,9 +258,60 @@ a {
   min-height: 84px;
 }
 
+.ad-global-top {
+  margin: 1rem auto 0;
+  width: min(100% - 2rem, 80rem);
+}
+
+.ad-global-footer {
+  display: grid;
+  width: min(100% - 2rem, 80rem);
+  margin: 1rem auto 3rem;
+  gap: 1rem;
+}
+
+.ad-sponsored-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+  border: 1px solid rgba(250, 204, 21, 0.35);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  color: #fff7bf;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.ad-sticky-rail {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .ad-leaderboard .ad-shell {
     min-height: 124px;
+  }
+
+  .ad-global-footer {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+  }
+}
+
+@media (min-width: 1680px) {
+  .ad-sticky-rail {
+    position: fixed;
+    z-index: 30;
+    top: 5.5rem;
+    right: 0.5rem;
+    display: block;
+    width: 184px;
+  }
+
+  .ad-sticky-rail .ad-shell {
+    background: rgba(16, 17, 20, 0.96);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.34);
   }
 }
 

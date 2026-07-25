@@ -20,6 +20,14 @@ export default function PrivacyPage() {
       />
       <section className="mt-10 grid gap-4">
         <article className="content-card">
+          <h2 className="text-xl font-bold text-white">Adsterra advertising</h2>
+          <p className="mt-2 text-white/68">
+            The site uses Adsterra display ads, native ads, sponsored links, a Social Bar, and a delayed Popunder.
+            Adsterra and its advertising partners may process device, browser, network, and interaction data under
+            their own privacy policies. Sponsored links open on third-party sites.
+          </p>
+        </article>
+        <article className="content-card">
           <h2 className="text-xl font-bold text-white">No Roblox account handling</h2>
           <p className="mt-2 text-white/68">Do not enter Roblox passwords, payment details, or account recovery information on this site.</p>
         </article>

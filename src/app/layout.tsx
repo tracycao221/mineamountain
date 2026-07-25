@@ -1,16 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
-import { AdsterraSmartLink } from "@/components/ads";
+import { AdsterraGlobalScripts, AdsterraPageFrame } from "@/components/ads";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { siteConfig } from "@/data/site";
-import { runtimeConfig } from "@/lib/runtime-config";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const popunderScriptUrl = runtimeConfig.adsterraPopunderScriptUrl;
-const adsenseClientId = runtimeConfig.adsenseClientId;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
@@ -63,29 +59,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7762683401538954"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className={`${inter.variable} font-sans`}>
         <style>{`.ad-shell{min-height:90px}.ad-host{min-height:90px}`}</style>
-        {adsenseClientId ? (
-          <script
-            id="google-adsense"
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
-            crossOrigin="anonymous"
-          />
-        ) : null}
-        {popunderScriptUrl ? (
-          <Script id="adsterra-popunder" src={popunderScriptUrl} strategy="afterInteractive" />
-        ) : null}
-        <AdsterraSmartLink />
+        <AdsterraGlobalScripts />
         <Navbar />
-        {children}
+        <AdsterraPageFrame>{children}</AdsterraPageFrame>
         <Footer />
       </body>
     </html>
