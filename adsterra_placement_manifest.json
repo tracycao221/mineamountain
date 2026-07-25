@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-07-25T14:58:34Z",
+  "domain": "mineamountain.com",
+  "cloudflarePagesProject": "mine-a-mountain-git",
+  "placementHandoffStatus": "ready",
+  "status": "ready",
+  "policyClassification": "adsense_adsterra_coexist_allowlist",
+  "adsterra_adsense_coexist_allowlist": [
+    "mineamountain.com"
+  ],
+  "adsterra_hard_reject_domains": [
+    "paintmykeyboard.org",
+    "stealbrainrot3d.com",
+    "traincrashsimulator.com"
+  ],
+  "experimentEligible": false,
+  "placements": [
+    {
+      "label": "NativeBanner_1",
+      "placementType": "Native",
+      "scriptUrl": "https://pl30483662.effectivecpmnetwork.com/a7b4249615d6f6f252e41e23357e0bf5/invoke.js",
+      "key": null,
+      "containerId": "container-a7b4249615d6f6f252e41e23357e0bf5",
+      "mappingStatus": "confirmed",
+      "deploymentStatus": "enabled",
+      "envVarNames": [
+        "NEXT_PUBLIC_ADSTERRA_NATIVE_1_ID",
+        "NEXT_PUBLIC_ADSTERRA_NATIVE_1_SCRIPT_URL"
+      ]
+    },
+    {
+      "label": "300x250_1",
+      "placementType": "300x250",
+      "scriptUrl": "https://www.highperformanceformat.com/06d767bd65b755b18f71d7593ea873c2/invoke.js",
+      "key": "06d767bd65b755b18f71d7593ea873c2",
+      "containerId": null,
+      "mappingStatus": "confirmed",
+      "deploymentStatus": "enabled",
+      "envVarNames": [
+        "NEXT_PUBLIC_ADSTERRA_BANNER_300X250_KEY",
+        "NEXT_PUBLIC_ADSTERRA_BANNER_300X250_SCRIPT_URL"
+      ]
+    },
+    {
+      "label": "320x50_1",
+      "placementType": "320x50",
+      "scriptUrl": "https://www.highperformanceformat.com/c478e099529631baf052508a85287c28/invoke.js",
+      "key": "c478e099529631baf052508a85287c28",
+      "containerId": null,
+      "mappingStatus": "confirmed",
+      "deploymentStatus": "enabled",
+      "envVarNames": [
+        "NEXT_PUBLIC_ADSTERRA_BANNER_320X50_KEY",
+        "NEXT_PUBLIC_ADSTERRA_BANNER_320X50_SCRIPT_URL"
+      ]
+    },
+    {
+      "label": "468x60_1",
+      "placementType": "468x60",
+      "scriptUrl": "https://www.highperformanceformat.com/0fb7f7b8d1e821d69d11bfaa1285f8ae/invoke.js",
+      "key": "0fb7f7b8d1e821d69d11bfaa1285f8ae",
+      "containerId": null,
+      "mappingStatus": "confirmed",
+      "deploymentStatus": "enabled",
+      "envVarNames": [
+        "NEXT_PUBLIC_ADSTERRA_BANNER_468X60_KEY",
+        "NEXT_PUBLIC_ADSTERRA_BANNER_468X60_SCRIPT_URL"
+      ]
+    },
+    {
+      "label": "728x90_1",
+      "placementType": "728x90",
+      "scriptUrl": "https://www.highperformanceformat.com/f4b7f73fdf204f5402e49b336b93da59/invoke.js",
+      "key": "f4b7f73fdf204f5402e49b336b93da59",
+      "containerId": null,
+      "mappingStatus": "confirmed",
+      "deploymentStatus": "enabled",
+      "envVarNames": [
+        "NEXT_PUBLIC_ADSTERRA_BANNER_728X90_KEY",
+        "NEXT_PUBLIC_ADSTERRA_BANNER_728X90_SCRIPT_URL"
+      ]
+    },
+    {
+      "label": "160x300_1",
+      "placementType": "160x300",
+      "scriptUrl": "https://www.highperformanceformat.com/537053639e4cad04657080ba1107ac4a/invoke.js",
+      "key": "537053639e4cad04657080ba1107ac4a",
+      "containerId": null,
+      "mappingStatus": "confirmed",
+      "deploymentStatus": "disabled_first_round",
+      "envVarNames": [
+        "NEXT_PUBLIC_ADSTERRA_BANNER_160X300_KEY",
+        "NEXT_PUBLIC_ADSTERRA_BANNER_160X300_SCRIPT_URL"
+      ]
+    },
+    {
+      "label": "160x600_1",
+      "placementType": "160x600",
+      "scriptUrl": "https://www.highperformanceformat.com/d6bdbc0950d5a4da334294a1a7100c00/invoke.js",
+      "key": "d6bdbc0950d5a4da334294a1a7100c00",
+      "containerId": null,
+      "mappingStatus": "confirmed",
+      "deploymentStatus": "disabled_first_round",
+      "envVarNames": [
+        "NEXT_PUBLIC_ADSTERRA_BANNER_160X600_KEY",
+        "NEXT_PUBLIC_ADSTERRA_BANNER_160X600_SCRIPT_URL"
+      ]
+    }
+  ],
+  "unresolvedPlacements": [
+    {
+      "label": "Popunder_1",
+      "placementType": "Popunder",
+      "mappingStatus": "disabled_pending_separate_confirmation",
+      "reason": "Excluded from the first coexistence deployment. It must retain its own placement and switch."
+    },
+    {
+      "label": "SocialBar_1",
+      "placementType": "Social Bar",
+      "mappingStatus": "disabled_pending_separate_confirmation",
+      "reason": "Excluded from the first coexistence deployment after the live fixed overlay check."
+    },
+    {
+      "label": "SmartLink_1",
+      "placementType": "SmartLink",
+      "mappingStatus": "disabled_first_round",
+      "reason": "Excluded because the coexistence rollout permits only in-page Native and Banner formats."
+    }
+  ],
+  "protectedPeerDomains": [
+    "paintmykeyboard.org",
+    "stealbrainrot3d.com",
+    "traincrashsimulator.com"
+  ],
+  "rule": "Only confirmed in-page Native and Banner placements are enabled in the first coexistence rollout. Popunder, Social Bar, SmartLink, and experiment assignment remain disabled.",
+  "cloudflareSyncAllowed": true,
+  "secretPolicy": "Public placement values only. Private API keys and Cloudflare tokens are never written here."
+}

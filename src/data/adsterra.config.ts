@@ -17,9 +17,9 @@ export const adsterraDefaults = {
   banner728x90Key: "f4b7f73fdf204f5402e49b336b93da59",
   banner728x90ScriptUrl:
     "https://www.highperformanceformat.com/f4b7f73fdf204f5402e49b336b93da59/invoke.js",
-  enablePopunder: true,
-  enableSocialBar: true,
-  enableStickyRail: true,
+  enablePopunder: false,
+  enableSocialBar: false,
+  enableStickyRail: false,
   native1Id: "container-a7b4249615d6f6f252e41e23357e0bf5",
   native1ScriptUrl:
     "https://pl30483662.effectivecpmnetwork.com/a7b4249615d6f6f252e41e23357e0bf5/invoke.js",

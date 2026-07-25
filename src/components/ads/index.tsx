@@ -399,9 +399,6 @@ export function AdsterraPageFrame({ children }: { children: React.ReactNode }) {
         </div>
         <div className="ad-global-rectangle">
           <AdsterraBanner />
-          <AdsterraSmartLinkAnchor className="ad-sponsored-link">
-            Sponsored game offer
-          </AdsterraSmartLinkAnchor>
         </div>
       </section>
     </>
