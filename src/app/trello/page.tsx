@@ -100,6 +100,42 @@ export default function TrelloStatusPage() {
         </div>
       </section>
 
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Verification matrix"
+          title="How to decide whether a Mine a Mountain link is safe to trust"
+          copy="Players search this page when they want Trello, Discord, or wiki links. The answer is not just a link list: each source needs a different confidence level."
+        />
+        <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
+          <table className="w-full min-w-[760px] text-left text-sm">
+            <thead className="bg-white/[0.06] text-white">
+              <tr>
+                <th className="px-4 py-3">Source</th>
+                <th className="px-4 py-3">Use it for</th>
+                <th className="px-4 py-3">Do not use it for</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10 text-white/68">
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">Official Roblox page</td>
+                <td className="px-4 py-4">Game identity, creator, public description, and update wording.</td>
+                <td className="px-4 py-4">Hidden upgrade math unless it is shown there.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">Discord or Trello candidate</td>
+                <td className="px-4 py-4">Announcements after creator ownership is verified.</td>
+                <td className="px-4 py-4">Active codes or rewards from uncited screenshots.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">Community guide or video</td>
+                <td className="px-4 py-4">Route ideas, bottleneck examples, and player terminology.</td>
+                <td className="px-4 py-4">Final tier-list rankings without date and gameplay proof.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section className="mt-10 grid gap-4 md:grid-cols-3">
         <Link href="/codes" className="content-card">
           <span className="mini-label">Freshness</span>

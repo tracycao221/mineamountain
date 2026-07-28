@@ -38,6 +38,31 @@ export default function WikiPage() {
         </div>
       </section>
 
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="System map"
+          title="How the Mine a Mountain wiki topics fit together"
+          copy="The wiki hub now answers the broad system query directly: crystals create cash, upgrades change the route, and source notes keep unverified details out of the guide pages."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <article className="content-card">
+            <span className="mini-label">Crystals</span>
+            <h2 className="mt-3 text-xl font-bold text-white">Resource and sale loop</h2>
+            <p className="mt-2 text-sm leading-6 text-white/65">Use crystal notes when you need to decide whether a higher route is worth the extra cold risk.</p>
+          </article>
+          <article className="content-card">
+            <span className="mini-label">Upgrades</span>
+            <h2 className="mt-3 text-xl font-bold text-white">Warmth, pickaxe, backpack</h2>
+            <p className="mt-2 text-sm leading-6 text-white/65">Use upgrade notes when your route fails because of freezing, slow mining, or full inventory.</p>
+          </article>
+          <article className="content-card">
+            <span className="mini-label">Updates</span>
+            <h2 className="mt-3 text-xl font-bold text-white">What must be rechecked</h2>
+            <p className="mt-2 text-sm leading-6 text-white/65">Use update notes before changing code status, tier-list roles, or exact upgrade advice.</p>
+          </article>
+        </div>
+      </section>
+
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <Link href="/codes" className="content-card">
           <span className="mini-label">Codes</span>

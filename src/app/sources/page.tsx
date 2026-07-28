@@ -49,6 +49,31 @@ export default function SourcesPage() {
           })}
         </div>
       </section>
+
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Evidence rules"
+          title="Which Mine a Mountain claims can change player-facing pages"
+          copy="This source page now documents the editorial rule behind code, tier-list, and guide updates so thin source pages do not look interchangeable with Trello or wiki pages."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <article className="content-card">
+            <span className="mini-label">Code claims</span>
+            <h2 className="mt-3 text-xl font-bold text-white">Exact string plus reward</h2>
+            <p className="mt-2 text-sm leading-6 text-white/65">A code should name the exact text, reward, source, and checked date before it moves to the active list.</p>
+          </article>
+          <article className="content-card">
+            <span className="mini-label">Upgrade claims</span>
+            <h2 className="mt-3 text-xl font-bold text-white">Visible mechanic first</h2>
+            <p className="mt-2 text-sm leading-6 text-white/65">Warmth, pickaxe, backpack, and crystal claims need official wording or repeatable gameplay evidence.</p>
+          </article>
+          <article className="content-card">
+            <span className="mini-label">Community claims</span>
+            <h2 className="mt-3 text-xl font-bold text-white">Label confidence</h2>
+            <p className="mt-2 text-sm leading-6 text-white/65">Videos and posts can explain player language, but they stay labelled until stronger evidence confirms the fact.</p>
+          </article>
+        </div>
+      </section>
     </main>
   );
 }

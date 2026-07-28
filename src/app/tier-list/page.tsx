@@ -56,6 +56,42 @@ export default function TierListPage() {
 
       <section className="mt-10">
         <SectionHeader
+          eyebrow="Upgrade decision table"
+          title="Pick the role that fixes your current Mine a Mountain bottleneck"
+          copy="This table gives the tier-list page a clearer unique answer for players who search before spending cash on warmth, pickaxe, or backpack upgrades."
+        />
+        <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
+          <table className="w-full min-w-[720px] text-left text-sm">
+            <thead className="bg-white/[0.06] text-white">
+              <tr>
+                <th className="px-4 py-3">Current problem</th>
+                <th className="px-4 py-3">Upgrade role to compare first</th>
+                <th className="px-4 py-3">Why it ranks there</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10 text-white/68">
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">Freezing before good crystals</td>
+                <td className="px-4 py-4">Warmth</td>
+                <td className="px-4 py-4">Survival unlocks longer routes before speed or capacity matters.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">Mining takes too long</td>
+                <td className="px-4 py-4">Pickaxe</td>
+                <td className="px-4 py-4">Faster mining improves each crystal stop if your backpack is not full.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">Returning to sell too often</td>
+                <td className="px-4 py-4">Backpack</td>
+                <td className="px-4 py-4">More capacity helps when the route is stable but sell trips interrupt cash flow.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader
           eyebrow="Rankings"
           title="Best current upgrade roles"
           copy="Compare the strongest early decisions with clear confidence labels until exact upgrade costs and crystal values are verified."

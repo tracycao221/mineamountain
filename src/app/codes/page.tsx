@@ -66,6 +66,42 @@ export default function CodesPage() {
         )}
       </section>
 
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Code intent map"
+          title="What to do when a Mine a Mountain code claim appears"
+          copy="GSC has discovered this URL but has not indexed it yet, so the page now gives a clearer first-fold answer for code searches instead of only saying no verified code is available."
+        />
+        <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
+          <table className="w-full min-w-[720px] text-left text-sm">
+            <thead className="bg-white/[0.06] text-white">
+              <tr>
+                <th className="px-4 py-3">Claim type</th>
+                <th className="px-4 py-3">Safe action</th>
+                <th className="px-4 py-3">Next page</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10 text-white/68">
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">New reward string</td>
+                <td className="px-4 py-4">Verify the exact spelling and reward before trying it in-game.</td>
+                <td className="px-4 py-4">Sources</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">Discord screenshot</td>
+                <td className="px-4 py-4">Check whether the Discord or board is creator-owned before trusting it.</td>
+                <td className="px-4 py-4">Trello / Discord status</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-semibold text-white">No working code</td>
+                <td className="px-4 py-4">Use warmth, pickaxe, and backpack upgrades instead of wasting runs on copied codes.</td>
+                <td className="px-4 py-4">Guides</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section className="mt-10 grid gap-4 lg:grid-cols-2">
         <article className="content-card">
           <SectionHeader
