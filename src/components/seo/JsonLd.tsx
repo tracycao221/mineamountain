@@ -1,4 +1,5 @@
 import { faqs, siteConfig, tierPreview } from "@/data/site";
+import { editorialConfig } from "@/data/editorial";
 
 function JsonLd({ data }: { data: unknown }) {
   return (
@@ -98,6 +99,44 @@ export function BreadcrumbJsonLd({ items }: { items: { name: string; href: strin
           name: item.name,
           item: `${siteConfig.domain}${item.href}`
         }))
+      }}
+    />
+  );
+}
+
+export function ArticleJsonLd({
+  headline,
+  description,
+  path,
+  published,
+  updated
+}: {
+  headline: string;
+  description: string;
+  path: string;
+  published: string;
+  updated: string;
+}) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline,
+        description,
+        mainEntityOfPage: `${siteConfig.domain}${path}`,
+        datePublished: published,
+        dateModified: updated,
+        author: {
+          "@type": "Person",
+          name: editorialConfig.author.name,
+          url: `${siteConfig.domain}${editorialConfig.author.url}`
+        },
+        publisher: {
+          "@type": "Organization",
+          name: siteConfig.name,
+          url: siteConfig.domain
+        }
       }}
     />
   );

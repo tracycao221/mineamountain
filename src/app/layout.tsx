@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { AdsterraGlobalScripts, AdsterraPageFrame } from "@/components/ads";
+import { AdsterraPageFrame } from "@/components/ads";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { siteConfig } from "@/data/site";
+import { runtimeConfig } from "@/lib/runtime-config";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -60,10 +61,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans`}>
-        <style>{`.ad-shell{min-height:90px}.ad-host{min-height:90px}`}</style>
-        <AdsterraGlobalScripts />
         <Navbar />
-        <AdsterraPageFrame>{children}</AdsterraPageFrame>
+        {runtimeConfig.adsenseReviewMode ? children : <AdsterraPageFrame>{children}</AdsterraPageFrame>}
         <Footer />
       </body>
     </html>

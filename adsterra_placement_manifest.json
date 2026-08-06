@@ -1,13 +1,11 @@
 {
-  "generatedAt": "2026-07-25T14:58:34Z",
+  "generatedAt": "2026-08-06T10:21:58Z",
   "domain": "mineamountain.com",
   "cloudflarePagesProject": "mine-a-mountain-git",
-  "placementHandoffStatus": "ready",
-  "status": "ready",
-  "policyClassification": "adsense_adsterra_coexist_allowlist",
-  "adsterra_adsense_coexist_allowlist": [
-    "mineamountain.com"
-  ],
+  "placementHandoffStatus": "paused_for_adsense_review",
+  "status": "paused_for_adsense_review",
+  "policyClassification": "adsense_review_mode_no_third_party_ads",
+  "adsterra_adsense_coexist_allowlist": [],
   "adsterra_hard_reject_domains": [
     "paintmykeyboard.org",
     "stealbrainrot3d.com",
@@ -22,7 +20,7 @@
       "key": null,
       "containerId": "container-a7b4249615d6f6f252e41e23357e0bf5",
       "mappingStatus": "confirmed",
-      "deploymentStatus": "enabled",
+      "deploymentStatus": "paused_for_adsense_review",
       "envVarNames": [
         "NEXT_PUBLIC_ADSTERRA_NATIVE_1_ID",
         "NEXT_PUBLIC_ADSTERRA_NATIVE_1_SCRIPT_URL"
@@ -35,7 +33,7 @@
       "key": "06d767bd65b755b18f71d7593ea873c2",
       "containerId": null,
       "mappingStatus": "confirmed",
-      "deploymentStatus": "enabled",
+      "deploymentStatus": "paused_for_adsense_review",
       "envVarNames": [
         "NEXT_PUBLIC_ADSTERRA_BANNER_300X250_KEY",
         "NEXT_PUBLIC_ADSTERRA_BANNER_300X250_SCRIPT_URL"
@@ -48,7 +46,7 @@
       "key": "c478e099529631baf052508a85287c28",
       "containerId": null,
       "mappingStatus": "confirmed",
-      "deploymentStatus": "enabled",
+      "deploymentStatus": "paused_for_adsense_review",
       "envVarNames": [
         "NEXT_PUBLIC_ADSTERRA_BANNER_320X50_KEY",
         "NEXT_PUBLIC_ADSTERRA_BANNER_320X50_SCRIPT_URL"
@@ -61,7 +59,7 @@
       "key": "0fb7f7b8d1e821d69d11bfaa1285f8ae",
       "containerId": null,
       "mappingStatus": "confirmed",
-      "deploymentStatus": "enabled",
+      "deploymentStatus": "paused_for_adsense_review",
       "envVarNames": [
         "NEXT_PUBLIC_ADSTERRA_BANNER_468X60_KEY",
         "NEXT_PUBLIC_ADSTERRA_BANNER_468X60_SCRIPT_URL"
@@ -74,7 +72,7 @@
       "key": "f4b7f73fdf204f5402e49b336b93da59",
       "containerId": null,
       "mappingStatus": "confirmed",
-      "deploymentStatus": "enabled",
+      "deploymentStatus": "paused_for_adsense_review",
       "envVarNames": [
         "NEXT_PUBLIC_ADSTERRA_BANNER_728X90_KEY",
         "NEXT_PUBLIC_ADSTERRA_BANNER_728X90_SCRIPT_URL"
@@ -132,7 +130,7 @@
     "stealbrainrot3d.com",
     "traincrashsimulator.com"
   ],
-  "rule": "Only confirmed in-page Native and Banner placements are enabled in the first coexistence rollout. Popunder, Social Bar, SmartLink, and experiment assignment remain disabled.",
-  "cloudflareSyncAllowed": true,
+  "rule": "AdSense review mode disables all third-party ad placements. Popunder, Social Bar, SmartLink, sticky rail, top-of-page banners, and native placements remain permanently unavailable; any later display-ad test requires a separate reviewed change.",
+  "cloudflareSyncAllowed": false,
   "secretPolicy": "Public placement values only. Private API keys and Cloudflare tokens are never written here."
 }

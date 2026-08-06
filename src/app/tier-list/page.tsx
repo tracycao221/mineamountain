@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { faqs, siteConfig, tierPreview } from "@/data/site";
-import { BreadcrumbJsonLd, FaqJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
+import { pageDates } from "@/data/editorial";
+import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd, ItemListJsonLd } from "@/components/seo/JsonLd";
+import { ArticleMeta, Breadcrumbs, EvidenceLabel, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Tier List`,
   description: `${siteConfig.gameName} upgrade role tier list for warmth, pickaxe, backpack, crystal mining, and climbing progression.`,
-  alternates: { canonical: `${siteConfig.domain}/tier-list` },
+  alternates: { canonical: `${siteConfig.domain}/tier-list/` },
   openGraph: {
     title: `${siteConfig.gameName} Tier List`,
     description: `${siteConfig.gameName} upgrade role tier list for warmth, pickaxe, backpack, crystal mining, and climbing progression.`,
-    url: `${siteConfig.domain}/tier-list`,
+    url: `${siteConfig.domain}/tier-list/`,
     images: ["/tier-list/opengraph-image"]
   },
   twitter: {
@@ -23,24 +24,27 @@ export const metadata: Metadata = {
 };
 
 export default function TierListPage() {
+  const description = "A conditional Mine a Mountain upgrade priority guide that ranks Warmth, Pickaxe, and Backpack by the bottleneck they solve, without unsupported universal tiers.";
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Tier List", href: "/tier-list" }]} />
       <ItemListJsonLd />
       <FaqJsonLd items={faqs.tierList} />
+      <ArticleJsonLd headline={`${siteConfig.gameName} Upgrade Priority Guide`} description={description} path="/tier-list/" published={pageDates.tierList.published} updated={pageDates.tierList.updated} />
       <Breadcrumbs items={[{ label: "Tier List", href: "/tier-list" }]} />
 
       <PageIntro
         eyebrow="Tier list"
-        title={`${siteConfig.gameName} Tier List`}
-        description="Use this role list to compare warmth, pickaxe, backpack, and crystal-route decisions before spending cash on the next upgrade."
+        title={`${siteConfig.gameName} Upgrade Priority Guide`}
+        description={description}
       />
+      <ArticleMeta {...pageDates.tierList} />
 
       <section className="mt-8 grid gap-4 lg:grid-cols-3">
         <article className="content-card">
           <span className="mini-label">Checked date</span>
           <h2 className="mt-3 text-xl font-bold text-white">{siteConfig.lastUpdated}</h2>
-          <p className="mt-2 text-sm leading-6 text-white/66">Rankings should be refreshed after codes, updates, balance changes, or repeated community reports.</p>
+          <p className="mt-2 text-sm leading-6 text-white/66">This page was rebuilt after the site&apos;s August AdSense content review.</p>
         </article>
         <article className="content-card">
           <span className="mini-label">Ranking criteria</span>
@@ -93,8 +97,8 @@ export default function TierListPage() {
       <section className="mt-10">
         <SectionHeader
           eyebrow="Rankings"
-          title="Best current upgrade roles"
-          copy="Compare the strongest early decisions with clear confidence labels until exact upgrade costs and crystal values are verified."
+          title="Three conditional priorities—not a fake universal tier"
+          copy="Each category becomes the first priority only when its matching problem ends the route."
         />
         <div className="mt-6 grid gap-4">
           {tierPreview.map((item) => (
@@ -117,6 +121,7 @@ export default function TierListPage() {
               <p className="mt-4 max-w-4xl text-white/68">{item.reason}</p>
               {item.teamNote ? <p className="mt-3 text-sm text-white/60">Upgrade note: {item.teamNote}</p> : null}
               {item.sourceNote ? <p className="mt-2 text-xs uppercase tracking-wide text-white/45">Source check: {item.sourceNote}</p> : null}
+              <EvidenceLabel level={item.name === "Warmth" ? "Confirmed" : "Practical inference"}>Exact costs and performance values are not published here.</EvidenceLabel>
             </article>
           ))}
         </div>
@@ -152,7 +157,7 @@ export default function TierListPage() {
           <Link href="/wiki" className="content-card">
             <span className="mini-label">Wiki</span>
             <h3 className="mt-3 text-lg font-bold text-white">Read system notes</h3>
-            <p className="mt-2 text-sm text-white/66">Use wiki pages for crystals, upgrades, mountain status, and source-backed progression notes.</p>
+            <p className="mt-2 text-sm text-white/66">Use wiki pages for crystals, upgrades, mountain status, and progression notes with visible evidence limits.</p>
           </Link>
           <Link href="/sources" className="content-card">
             <span className="mini-label">Sources</span>

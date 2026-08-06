@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { activeCodes, faqs, siteConfig } from "@/data/site";
-import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
+import { pageDates } from "@/data/editorial";
+import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
+import { ArticleMeta, Breadcrumbs, EvidenceLabel, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Codes & Code Status`,
@@ -23,17 +24,20 @@ export const metadata: Metadata = {
 };
 
 export default function CodesPage() {
+  const description = "Checked Mine a Mountain code status with a no-fake-code policy, source hierarchy, and safe verification steps.";
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Codes", href: "/codes" }]} />
       <FaqJsonLd items={faqs.codes} />
+      <ArticleJsonLd headline={`${siteConfig.gameName} Codes and Code Status`} description={description} path="/codes/" published={pageDates.codes.published} updated={pageDates.codes.updated} />
       <Breadcrumbs items={[{ label: "Codes", href: "/codes" }]} />
 
       <PageIntro
         eyebrow="Freshness-sensitive"
         title={`${siteConfig.gameName} Codes and Code Status`}
-        description="Use this page to check Mine a Mountain codes, code rewards, and source status. Unconfirmed reward strings stay off the active list until a reliable source checks out."
+        description={description}
       />
+      <ArticleMeta {...pageDates.codes} />
 
       <section className="mt-10">
           <SectionHeader
@@ -56,21 +60,22 @@ export default function CodesPage() {
           </div>
         ) : (
           <article className="content-card mt-6">
-            <span className="mini-label">Checked June 27, 2026</span>
-            <h2 className="mt-3 text-2xl font-extrabold text-white">No verified active codes yet</h2>
+            <span className="mini-label">Checked August 6, 2026</span>
+            <h2 className="mt-3 text-2xl font-extrabold text-white">No active code is confirmed</h2>
             <p className="mt-3 text-sm leading-6 text-white/68">
-              We checked the Roblox game listing and public source surfaces, but did not find a reliable active Mine a Mountain code.
+              We checked the official Roblox game listing and public source surfaces, but did not find a reliable active Mine a Mountain code.
               When a code is confirmed, it belongs here with its reward, source, and checked date. Until then, this page should answer code searches without inventing rewards.
             </p>
+            <EvidenceLabel level="Confirmed">No code string appears in the official Roblox description checked on August 6, 2026.</EvidenceLabel>
           </article>
         )}
       </section>
 
       <section className="mt-10">
         <SectionHeader
-          eyebrow="Code intent map"
+          eyebrow="Code claim checklist"
           title="What to do when a Mine a Mountain code claim appears"
-          copy="GSC has discovered this URL but has not indexed it yet, so the page now gives a clearer first-fold answer for code searches instead of only saying no verified code is available."
+          copy="Use the claim itself, its source, and the current in-game interface before treating a reward string as active."
         />
         <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
           <table className="w-full min-w-[720px] text-left text-sm">
@@ -107,13 +112,13 @@ export default function CodesPage() {
           <SectionHeader
             eyebrow="Redeem flow"
             title="How to redeem Mine a Mountain codes"
-            copy="Update these steps after checking the live in-game UI. Roblox code flows often move between shop, settings, menu, and event panels."
+            copy="The public Roblox listing does not document a redeem button, so these are verification steps rather than a claim that a code menu currently exists."
           />
           <ol className="mt-5 grid gap-3 text-white/70">
             <li>1. Open the game from the official Roblox page.</li>
             <li>2. Finish any tutorial gate that hides menus.</li>
-            <li>3. Find the Codes, Rewards, Shop, or Settings panel.</li>
-            <li>4. Paste the code exactly, then claim the reward.</li>
+            <li>3. Check whether the current interface has a Codes or Rewards option.</li>
+            <li>4. If no official code entry exists, do not use third-party generators or enter Roblox credentials elsewhere.</li>
           </ol>
         </article>
         <article className="content-card">
@@ -143,7 +148,7 @@ export default function CodesPage() {
           </article>
           <article className="content-card">
             <h2 className="text-lg font-bold text-white">Why not list rumored rewards?</h2>
-            <p className="mt-2 text-sm leading-6 text-white/66">Rumored Roblox rewards waste player time. This page separates search intent from actual checked code evidence.</p>
+            <p className="mt-2 text-sm leading-6 text-white/66">Rumored Roblox rewards waste player time. This page separates copied claims from evidence that can be checked.</p>
           </article>
           <article className="content-card">
             <h2 className="text-lg font-bold text-white">Where should I check next?</h2>
@@ -153,12 +158,12 @@ export default function CodesPage() {
       </section>
 
       <section className="mt-10 grid gap-4 md:grid-cols-3">
-        <Link href="/codes/guide" className="content-card">
-          <span className="mini-label">Codes guide</span>
+        <Link href="/sources" className="content-card">
+          <span className="mini-label">Sources</span>
           <h2 className="mt-3 text-lg font-bold text-white">How code claims are checked</h2>
-          <p className="mt-2 text-sm leading-6 text-white/66">Use the codes guide to understand source checks before trying unverified reward strings.</p>
+          <p className="mt-2 text-sm leading-6 text-white/66">Review the source hierarchy before trying an unverified reward string.</p>
         </Link>
-        <Link href="/updates/update-log" className="content-card">
+        <Link href="/updates" className="content-card">
           <span className="mini-label">Update log</span>
           <h2 className="mt-3 text-lg font-bold text-white">Watch update moments</h2>
           <p className="mt-2 text-sm leading-6 text-white/66">Code claims often appear around visible game changes, so pair this page with the update log.</p>

@@ -5,10 +5,10 @@ export const siteConfig: SiteConfig = {
   name: `${gameConfig.name} Wiki`,
   domain: gameConfig.domain,
   gameName: gameConfig.name,
-  description: `${gameConfig.name} wiki with checked code status, Trello and Discord status, an upgrade planner, guides, and source-backed Roblox progression help.`,
+  description: `${gameConfig.name} wiki with checked code status, Trello and Discord status, an upgrade planner, guides, and evidence-based Roblox progression help.`,
   valueProposition: `Check ${gameConfig.name} codes, plan warmth, pickaxe, and backpack upgrades, and verify official links before you grind in Roblox.`,
   shortDisclosure: `${gameConfig.name} Wiki is an unofficial fan-made resource. Roblox and the game creators remain the source of record for official support and updates.`,
-  lastUpdated: "2026-06-27",
+  lastUpdated: "2026-08-06",
   freshnessLabel: "codes, links, updates, and upgrade notes checked",
   keywords: [
     `${gameConfig.name}`,
@@ -33,7 +33,7 @@ export const siteConfig: SiteConfig = {
       label: "Codes",
       href: "/codes",
       items: [
-        { label: "Active Codes", href: "/codes", description: "Latest known rewards and redemption steps." },
+        { label: "Code Status", href: "/codes", description: "Checked reward status and no-fake-code policy." },
         { label: "Sources", href: "/sources", description: "Where code and update claims should be checked." }
       ]
     },
@@ -41,26 +41,45 @@ export const siteConfig: SiteConfig = {
       label: "Tier List",
       href: "/tier-list",
       items: [
-        { label: "Rankings", href: "/tier-list", description: "Best current picks and why they matter." },
-        { label: "Calculator", href: "/calculator", description: "Decision helper for builds or progression." }
+        { label: "Upgrade Priority", href: "/tier-list", description: "Conditional Warmth, Pickaxe, and Backpack priorities." },
+        { label: "Route Planner", href: "/calculator", description: "Diagnose the bottleneck ending your current route." }
       ]
     },
     {
       label: "Wiki",
       href: "/wiki",
       items: [
-        { label: "Wiki Hub", href: "/wiki", description: "Entity pages for items, units, maps, clans, or systems." },
-        { label: "Guides", href: "/guides", description: "Beginner, farming, boss, and progression paths." },
-        { label: "Trello/Discord", href: "/trello", description: "Official board, Discord, and wiki status." }
+        { label: "Wiki Hub", href: "/wiki", description: "Confirmed crystals, upgrades, cold, and mountain systems." },
+        { label: "Crystals", href: "/wiki/crystals", description: "Confirmed crystal mechanics and missing value boundaries." },
+        { label: "Upgrades", href: "/wiki/upgrades", description: "Warmth, Pickaxe, and Backpack decisions." }
+      ]
+    },
+    {
+      label: "Guides",
+      href: "/guides",
+      items: [
+        { label: "Beginner Guide", href: "/guides/beginner", description: "A complete first-session route." },
+        { label: "Route Planner", href: "/calculator", description: "Diagnose the limit ending the current run." }
+      ]
+    },
+    {
+      label: "Community",
+      href: "/trello",
+      items: [
+        { label: "Trello/Discord", href: "/trello", description: "Official board, Discord, and wiki status." },
+        { label: "Updates", href: "/updates", description: "Dated official and editorial changes." },
+        { label: "Sources", href: "/sources", description: "Evidence hierarchy and check dates." }
       ]
     },
     {
       label: "About",
-      href: "/disclosure",
+      href: "/about",
       items: [
+        { label: "About Michell", href: "/about", description: "Author identity and editorial standards." },
         { label: "Disclosure", href: "/disclosure", description: "Fan-made status and source boundaries." },
         { label: "Contact", href: "/contact", description: "Corrections and editorial contact path." },
-        { label: "Privacy", href: "/privacy", description: "Privacy and ad disclosure." }
+        { label: "Privacy", href: "/privacy", description: "Privacy and ad disclosure." },
+        { label: "Terms", href: "/terms", description: "Terms for using this fan resource." }
       ]
     }
   ]
@@ -74,10 +93,10 @@ export const heroActions = [
 ] as const;
 
 export const heroMetrics: HeroMetric[] = [
-  { label: "Code status", value: "Live", note: "Designed for frequent checks" },
-  { label: "Core pages", value: "10", note: "Codes, tier list, Trello, tools, guides, wiki" },
-  { label: "Source notes", value: "Clear", note: "Official, community, and needs-check labels" },
-  { label: "Source model", value: "Clear", note: "Official and community links split" }
+  { label: "Code status", value: "No active code", note: "Official listing checked August 6, 2026" },
+  { label: "Official creator", value: "10K Steps", note: "Verified group on Roblox" },
+  { label: "Mountain cadence", value: "Hourly", note: "Wording from the official description" },
+  { label: "Evidence model", value: "3 levels", note: "Confirmed, inference, needs verification" }
 ];
 
 export const activeCodes: GameCode[] = [];
@@ -150,16 +169,16 @@ export const guideClusters: LinkCard[] = [
     description: "First-session path for climbing, mining crystals, selling for cash, and picking upgrades."
   },
   {
-    title: "Warmth guide",
-    href: "/guides/warmth",
+    title: "Upgrades guide",
+    href: "/wiki/upgrades",
     eyebrow: "Guide",
-    description: "How to think about freezing, cold climbs, and when warmth beats faster mining."
+    description: "Compare Warmth, Pickaxe, and Backpack by the first problem that ended the route."
   },
   {
-    title: "Digging Luck guide",
-    href: "/guides/digging-luck",
-    eyebrow: "Guide",
-    description: "What is verified about the like and group reward, and what still needs checking."
+    title: "Route bottleneck planner",
+    href: "/calculator",
+    eyebrow: "Tool",
+    description: "Turn a route observation into a cautious next-upgrade test without fake ROI."
   }
 ];
 
@@ -177,10 +196,10 @@ export const wikiCards: LinkCard[] = [
     description: "Compare warmth, pickaxe, and backpack roles before exact costs are available."
   },
   {
-    title: "Mountain status",
-    href: "/wiki",
-    eyebrow: "Wiki",
-    description: "Keep the hourly mountain claim and update notes separate from unverified rotation names."
+    title: "Dated updates",
+    href: "/updates",
+    eyebrow: "Updates",
+    description: "Track official Roblox timestamps, source checks, and editorial changes by date."
   }
 ];
 
@@ -220,32 +239,11 @@ export const editorialSignals: EditorialSignal[] = [
   }
 ];
 
-export const videoGuides: LinkCard[] = [
-  {
-    title: "Gameplay overview",
-    href: "#",
-    eyebrow: "Video",
-    description: "Use a current YouTube creator guide that explains the game loop and shows real gameplay."
-  },
-  {
-    title: "Beginner route",
-    href: "#",
-    eyebrow: "Video",
-    description: "Use a recent YouTube walkthrough for the first climb, crystal sale, or warmth upgrade."
-  },
-  {
-    title: "Meta showcase",
-    href: "#",
-    eyebrow: "Video",
-    description: "Use a YouTube video that supports upgrade order, crystal routes, or update context."
-  }
-];
-
 export const faqs: Record<"home" | "codes" | "tierList" | "calculator", FaqItem[]> = {
   home: [
     {
       q: `What is ${gameConfig.name} Wiki?`,
-      a: `${gameConfig.name} Wiki is a fan-made Roblox resource for code status, upgrade planning, Trello and Discord status, guides, and source-backed progression help.`
+      a: `${gameConfig.name} Wiki is a fan-made Roblox resource for code status, upgrade planning, Trello and Discord status, guides, and evidence-based progression help.`
     },
     {
       q: `Is this the official ${gameConfig.name} website?`,

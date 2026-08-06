@@ -48,7 +48,7 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-2 sm:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <Link href="/tier-list" className="button-primary button-small">
             Tier List
           </Link>

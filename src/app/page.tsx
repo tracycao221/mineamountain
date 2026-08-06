@@ -10,12 +10,11 @@ import {
   siteConfig,
   tierPreview,
   toolCards,
-  videoGuides,
   wikiCards
 } from "@/data/site";
-import { expansionPageCards } from "@/data/seo-expansion";
+import { editorialConfig, pageDates } from "@/data/editorial";
 import { FaqJsonLd, SoftwareApplicationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
-import { SectionHeader, TrustNote } from "@/components/ui/content";
+import { ArticleMeta, EvidenceLabel, SectionHeader, TrustNote } from "@/components/ui/content";
 import { BrandHero } from "@/components/home/BrandHero";
 
 export const metadata: Metadata = {
@@ -46,6 +45,10 @@ export default function HomePage() {
 
       <BrandHero />
 
+      <div className="mx-auto max-w-7xl px-4">
+        <ArticleMeta {...pageDates.home} />
+      </div>
+
       <section className="border-y border-white/10 bg-black/25">
         <div className="mx-auto grid max-w-7xl gap-px px-4 py-5 sm:grid-cols-2 lg:grid-cols-4">
           {heroMetrics.map((metric) => (
@@ -63,14 +66,14 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="Freshness center"
             title={`${siteConfig.gameName} codes and update status`}
-            copy="Codes are the highest-repeat Roblox search intent, so the homepage surfaces the latest verified set and sends players into the dedicated codes page."
+            copy="The homepage shows the latest code check and sends players to the full status page before they try copied reward strings."
           />
           <Link className="button-secondary" href="/codes">
             View all codes
           </Link>
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {activeCodes.slice(0, 4).map((code) => (
+          {activeCodes.length ? activeCodes.slice(0, 4).map((code) => (
             <article key={code.code} className="content-card">
               <div className="flex items-center justify-between gap-3">
                 <span className="status-pill">{code.status}</span>
@@ -79,7 +82,14 @@ export default function HomePage() {
               <h3 className="mt-4 font-mono text-xl font-bold text-[color:var(--accent)]">{code.code}</h3>
               <p className="mt-2 text-sm text-white/65">{code.reward}</p>
             </article>
-          ))}
+          )) : (
+            <article className="content-card md:col-span-2 lg:col-span-4">
+              <span className="mini-label">Checked August 6, 2026</span>
+              <h3 className="mt-3 text-2xl font-bold text-white">No verified active code is listed</h3>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-white/66">The official Roblox description checked for this review contains no reward string. The site will not fill this space with copied or guessed codes.</p>
+              <EvidenceLabel level="Confirmed">Official Roblox listing checked; in-game code UI still needs direct verification.</EvidenceLabel>
+            </article>
+          )}
         </div>
       </section>
 
@@ -88,7 +98,7 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="Tier preview"
             title={`${siteConfig.gameName} tier list preview`}
-            copy="Start with the strongest current picks, then use the full tier list when you need ranking notes, substitutes, and update dates."
+            copy="There is no universal first-place upgrade. Each category moves to the front only when it fixes the problem ending the current route."
           />
           <div className="grid gap-4 md:grid-cols-3">
             {tierPreview.map((item) => (
@@ -128,7 +138,7 @@ export default function HomePage() {
             <SectionHeader
               eyebrow="Guides"
               title="Pick the next problem to solve"
-              copy="Use these guides when you need beginner advice, safer upgrade choices, farming routes, or advanced strategy."
+              copy="The guide library has been consolidated so each destination solves a different problem."
             />
             <div className="mt-6 grid gap-3">
               {guideClusters.map((guide) => (
@@ -145,8 +155,8 @@ export default function HomePage() {
           <div>
             <SectionHeader
               eyebrow="Wiki coverage"
-              title="Entity pages for Roblox search demand"
-              copy="Characters, items, maps, clans, units, codes, and puzzle pages should be split into wiki entities when research confirms them."
+              title="Confirmed Mine a Mountain systems"
+              copy="The wiki stays focused on crystals, upgrades, and the hourly mountain loop instead of inventing unrelated entities."
             />
             <div className="mt-6 grid gap-3">
               {wikiCards.map((item) => (
@@ -160,23 +170,6 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <SectionHeader
-          eyebrow="New SEO guides"
-          title="More Mine a Mountain answers"
-          copy="Use these focused pages for codes, tips, strategy, upgrades, levels, FAQ, updates, and walkthrough searches."
-        />
-        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-          {expansionPageCards.map((page) => (
-            <Link key={page.href} href={page.href} className="content-card">
-              <span className="mini-label">{page.eyebrow}</span>
-              <h3 className="mt-3 text-lg font-bold text-white">{page.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">{page.description}</p>
-            </Link>
-          ))}
         </div>
       </section>
 
@@ -215,21 +208,21 @@ export default function HomePage() {
       </section>
 
       <section className="bg-white/[0.025]">
-        <div className="mx-auto max-w-7xl px-4 py-12">
-          <SectionHeader
-            eyebrow="Community research"
-            title="Video and creator references"
-            copy="Recent creator videos help players understand gameplay, updates, rankings, and strategy. Treat videos as supporting references, not official patch notes."
-          />
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {videoGuides.map((video) => (
-              <a key={video.href} href={video.href} className="content-card" target="_blank" rel="noreferrer">
-                <span className="mini-label">{video.source ?? video.eyebrow}</span>
-                <h3 className="mt-3 text-lg font-bold text-white">{video.title}</h3>
-                <p className="mt-2 text-sm text-white/65">{video.description}</p>
-              </a>
-            ))}
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <SectionHeader eyebrow="Official snapshot" title="A dated Roblox status—not an evergreen counter" copy={`Captured ${editorialConfig.officialSnapshot.capturedAt}. Live values change continuously, so this snapshot is evidence of the check rather than a promise that the numbers are current today.`} />
+            <dl className="mt-6 grid grid-cols-2 gap-3">
+              <div className="content-card"><dt className="text-xs uppercase text-white/45">Players</dt><dd className="mt-2 text-2xl font-bold text-white">{editorialConfig.officialSnapshot.playerCount.toLocaleString("en-US")}</dd></div>
+              <div className="content-card"><dt className="text-xs uppercase text-white/45">Visits</dt><dd className="mt-2 text-2xl font-bold text-white">{editorialConfig.officialSnapshot.visits.toLocaleString("en-US")}</dd></div>
+              <div className="content-card"><dt className="text-xs uppercase text-white/45">Favorites</dt><dd className="mt-2 text-2xl font-bold text-white">{editorialConfig.officialSnapshot.favorites.toLocaleString("en-US")}</dd></div>
+              <div className="content-card"><dt className="text-xs uppercase text-white/45">Positive votes</dt><dd className="mt-2 text-2xl font-bold text-white">{editorialConfig.officialSnapshot.upVotes.toLocaleString("en-US")}</dd></div>
+            </dl>
           </div>
+          <figure className="official-media">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={editorialConfig.officialMedia[0].src} alt={editorialConfig.officialMedia[0].alt} width="768" height="432" />
+            <figcaption>{editorialConfig.officialMedia[0].caption} Source: Roblox game media API.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -237,7 +230,7 @@ export default function HomePage() {
         <SectionHeader
           eyebrow="FAQ"
           title={`${siteConfig.gameName} quick answers`}
-          copy="Quick answers for codes, sources, rankings, and the next page to check."
+          copy="Concise answers for codes, sources, rankings, and the next page to check."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {faqs.home.map((faq) => (

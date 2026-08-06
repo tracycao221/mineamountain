@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig, wikiCards } from "@/data/site";
-import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
+import { pageDates } from "@/data/editorial";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { ArticleMeta, Breadcrumbs, EvidenceLabel, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Wiki`,
@@ -11,20 +12,28 @@ export const metadata: Metadata = {
 };
 
 export default function WikiPage() {
+  const description = "A focused Mine a Mountain wiki hub for the confirmed crystal, upgrade, cold, hourly mountain, selling, and Digging Luck systems.";
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Wiki", href: "/wiki" }]} />
+      <ArticleJsonLd headline={`${siteConfig.gameName} Wiki`} description={description} path="/wiki/" published={pageDates.wiki.published} updated={pageDates.wiki.updated} />
       <Breadcrumbs items={[{ label: "Wiki", href: "/wiki" }]} />
       <PageIntro
         eyebrow="Wiki hub"
         title={`${siteConfig.gameName} Wiki`}
-        description="Use this hub for game systems, items, maps, rewards, builds, and other details that help players decide what to do next."
+        description={description}
       />
+      <ArticleMeta {...pageDates.wiki} />
+
+      <section className="mt-10 content-card">
+        <SectionHeader eyebrow="Quick answer" title="What belongs in this Mine a Mountain wiki?" />
+        <p className="mt-4 leading-7 text-white/68">Use the wiki to understand the systems that directly change a run: crystals create cash, cold limits height, Warmth extends survival, Pickaxe affects mining, Backpack affects carrying, and the mountain is advertised to change every hour. Exact values stay out until they can be checked in the live game.</p>
+      </section>
 
       <section className="mt-10">
         <SectionHeader
-          eyebrow="Game topics"
-          title="Choose the wiki topic you need"
+          eyebrow="Wiki topic pages"
+          title="Choose the confirmed topic you need"
           copy="Start with the topics that affect your next upgrade, clear, reward, build, or route decision."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -38,10 +47,18 @@ export default function WikiPage() {
         </div>
       </section>
 
+      <section className="mt-10 content-card">
+        <SectionHeader eyebrow="Core systems" title="Current facts from the official Roblox listing" />
+        <div className="mt-5 grid gap-3 text-sm leading-6 text-white/68 md:grid-cols-2">
+          <p>Players climb a mountain and mine rare crystals.</p><p>Crystals are sold for cash.</p><p>Cold pressure increases near the top.</p><p>Warmth, Pickaxe, and Backpack are upgrade categories.</p><p>A new mountain is advertised every hour.</p><p>Liking the game and joining the group is advertised as +1 Digging Luck.</p>
+        </div>
+        <EvidenceLabel level="Confirmed">Official Roblox game description checked August 6, 2026.</EvidenceLabel>
+      </section>
+
       <section className="mt-10">
         <SectionHeader
-          eyebrow="System map"
-          title="How the Mine a Mountain wiki topics fit together"
+          eyebrow="Player routes"
+          title="How the core systems fit together during a run"
           copy="The wiki hub now answers the broad system query directly: crystals create cash, upgrades change the route, and source notes keep unverified details out of the guide pages."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -74,6 +91,14 @@ export default function WikiPage() {
           <h2 className="mt-3 text-xl font-bold text-white">Verify source links</h2>
           <p className="mt-2 text-sm leading-6 text-white/66">Use the Trello and Discord status page before trusting community screenshots or unofficial wiki mirrors.</p>
         </Link>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader eyebrow="FAQ" title="Mine a Mountain wiki questions" />
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <article className="content-card"><h2 className="text-xl font-bold text-white">Why is there no full crystal price table?</h2><p className="mt-3 text-sm leading-6 text-white/66">The official public listing used for this review does not provide exact prices. Publishing a copied table without live verification would make the wiki less trustworthy.</p></article>
+          <article className="content-card"><h2 className="text-xl font-bold text-white">Where should a new player begin?</h2><p className="mt-3 text-sm leading-6 text-white/66">Start with the beginner guide, complete one climb-mine-sell loop, then use the upgrades guide or planner after identifying the first limit.</p></article>
+        </div>
       </section>
     </main>
   );

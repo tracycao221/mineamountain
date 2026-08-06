@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { gameConfig } from "@/data/game.config";
 import { siteConfig } from "@/data/site";
-import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
+import { pageDates } from "@/data/editorial";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { ArticleMeta, Breadcrumbs, EvidenceLabel, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Trello, Discord & Wiki Status`,
@@ -46,20 +47,23 @@ const statusRows = [
     label: "Wiki",
     href: "/wiki",
     status: "Site hub",
-    note: "Use the wiki hub for source-backed entities, mechanics, rewards, and guide links after research confirms them."
+    note: "Use the wiki hub for checked mechanics, rewards, and guide links after evidence confirms them."
   }
 ];
 
 export default function TrelloStatusPage() {
+  const description = `A dated source-status page showing which ${siteConfig.gameName} Roblox, Discord, Trello, and wiki links are confirmed and which still need creator ownership verification.`;
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Trello, Discord & Wiki", href: "/trello" }]} />
+      <ArticleJsonLd headline={`${siteConfig.gameName} Trello, Discord & Wiki Status`} description={description} path="/trello/" published={pageDates.trello.published} updated={pageDates.trello.updated} />
       <Breadcrumbs items={[{ label: "Trello, Discord & Wiki", href: "/trello" }]} />
       <PageIntro
         eyebrow="Community status"
         title={`${siteConfig.gameName} Trello, Discord & Wiki Status`}
-        description={`Use this page to check which ${siteConfig.gameName} community sources are official, which still need verification, and where to confirm codes, updates, and tier-list changes.`}
+        description={description}
       />
+      <ArticleMeta {...pageDates.trello} sourcesChecked="2026-08-06" />
 
       <section className="mt-10">
         <SectionHeader
@@ -99,6 +103,7 @@ export default function TrelloStatusPage() {
           })}
         </div>
       </section>
+      <EvidenceLabel level="Needs verification">No Discord or Trello URL is promoted as official unless ownership can be tied back to 10K Steps or the Roblox listing.</EvidenceLabel>
 
       <section className="mt-10">
         <SectionHeader
@@ -139,7 +144,7 @@ export default function TrelloStatusPage() {
       <section className="mt-10 grid gap-4 md:grid-cols-3">
         <Link href="/codes" className="content-card">
           <span className="mini-label">Freshness</span>
-          <h2 className="mt-3 text-xl font-bold text-white">Codes verification</h2>
+          <h2 className="mt-3 text-xl font-bold text-white">Check a code claim</h2>
           <p className="mt-2 text-sm leading-6 text-white/65">Check Mine a Mountain codes and code screenshots against official update surfaces before publishing reward claims.</p>
         </Link>
         <Link href="/tier-list" className="content-card">

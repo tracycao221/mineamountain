@@ -17,6 +17,7 @@ function readPositiveInteger(value: string | undefined, fallback: number): numbe
 }
 
 export const runtimeConfig = {
+  adsenseReviewMode: readBoolean(process.env.NEXT_PUBLIC_ADSENSE_REVIEW_MODE, true),
   adsterraBanner160x300Key:
     readEnv(process.env.NEXT_PUBLIC_ADSTERRA_BANNER_160X300_KEY) ||
     adsterraDefaults.banner160x300Key,
@@ -53,18 +54,9 @@ export const runtimeConfig = {
   adsterraBanner728x90ScriptUrl:
     readEnv(process.env.NEXT_PUBLIC_ADSTERRA_BANNER_728X90_SCRIPT_URL) ||
     adsterraDefaults.banner728x90ScriptUrl,
-  adsterraEnablePopunder: readBoolean(
-    process.env.NEXT_PUBLIC_ADSTERRA_ENABLE_POPUNDER,
-    adsterraDefaults.enablePopunder
-  ),
-  adsterraEnableSocialBar: readBoolean(
-    process.env.NEXT_PUBLIC_ADSTERRA_ENABLE_SOCIAL_BAR,
-    adsterraDefaults.enableSocialBar
-  ),
-  adsterraEnableStickyRail: readBoolean(
-    process.env.NEXT_PUBLIC_ADSTERRA_ENABLE_STICKY_RAIL,
-    adsterraDefaults.enableStickyRail
-  ),
+  adsterraEnablePopunder: false,
+  adsterraEnableSocialBar: false,
+  adsterraEnableStickyRail: false,
   adsterraNative1Id:
     readEnv(process.env.NEXT_PUBLIC_ADSTERRA_NATIVE_1_ID) || adsterraDefaults.native1Id,
   adsterraNative1ScriptUrl:
@@ -81,9 +73,7 @@ export const runtimeConfig = {
   adsterraPopunderScriptUrl:
     readEnv(process.env.NEXT_PUBLIC_ADSTERRA_POPUNDER_SCRIPT_URL) ||
     adsterraDefaults.popunderScriptUrl,
-  adsterraSmartLinkUrl:
-    readEnv(process.env.NEXT_PUBLIC_ADSTERRA_SMARTLINK_URL) ||
-    adsterraDefaults.smartLinkUrl,
+  adsterraSmartLinkUrl: undefined,
   adsterraSocialBarScriptUrl:
     readEnv(process.env.NEXT_PUBLIC_ADSTERRA_SOCIAL_BAR_SCRIPT_URL) ||
     adsterraDefaults.socialBarScriptUrl,

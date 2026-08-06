@@ -1,25 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { officialLinks, siteConfig } from "@/data/site";
-import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
-import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
+import { pageDates } from "@/data/editorial";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { ArticleMeta, Breadcrumbs, EvidenceLabel, PageIntro, SectionHeader } from "@/components/ui/content";
 
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Sources`,
   description: `Source and verification notes for ${siteConfig.gameName} codes, guides, wiki claims, and tier-list updates.`,
-  alternates: { canonical: `${siteConfig.domain}/sources` }
+  alternates: { canonical: `${siteConfig.domain}/sources/` }
 };
 
 export default function SourcesPage() {
+  const description = "The source hierarchy, check dates, and evidence rules used for Mine a Mountain codes, upgrades, crystals, updates, and guide claims.";
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Sources", href: "/sources" }]} />
+      <ArticleJsonLd headline={`${siteConfig.gameName} Sources`} description={description} path="/sources/" published={pageDates.sources.published} updated={pageDates.sources.updated} />
       <Breadcrumbs items={[{ label: "Sources", href: "/sources" }]} />
       <PageIntro
         eyebrow="Verification"
         title={`${siteConfig.gameName} Sources`}
-        description="Use this page to see where code, tier-list, update, Trello, Discord, wiki, and guide claims are checked. Official Roblox pages should win when sources disagree."
+        description={description}
       />
+      <ArticleMeta {...pageDates.sources} />
 
       <section className="mt-10">
         <SectionHeader
@@ -48,6 +52,29 @@ export default function SourcesPage() {
             );
           })}
         </div>
+      </section>
+
+      <section className="mt-10 grid gap-4 lg:grid-cols-2">
+        <article className="content-card">
+          <h2 className="text-xl font-bold text-white">Official data checked on August 6, 2026</h2>
+          <ul className="mt-4 grid gap-3 text-sm leading-6 text-white/68">
+            <li>Roblox game listing for experience identity, creator, description, and public availability.</li>
+            <li>Roblox games API for updated time, players, visits, and favorites.</li>
+            <li>Roblox votes API for positive and negative vote counts.</li>
+            <li>Roblox game media and thumbnails APIs for official promotional images.</li>
+          </ul>
+          <EvidenceLabel level="Confirmed">Primary sources are recorded with a check date.</EvidenceLabel>
+        </article>
+        <article className="content-card">
+          <h2 className="text-xl font-bold text-white">Information still withheld</h2>
+          <ul className="mt-4 grid gap-3 text-sm leading-6 text-white/68">
+            <li>Exact upgrade prices and level effects.</li>
+            <li>Complete crystal names, values, rarities, and spawn odds.</li>
+            <li>Exact hourly mountain rotation names.</li>
+            <li>Any code string not tied to a reliable source and live verification.</li>
+          </ul>
+          <EvidenceLabel level="Needs verification">Missing data is not converted into filler or copied tables.</EvidenceLabel>
+        </article>
       </section>
 
       <section className="mt-10">

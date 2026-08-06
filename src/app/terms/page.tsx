@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/site";
-import { Breadcrumbs, PageIntro } from "@/components/ui/content";
+import { pageDates } from "@/data/editorial";
+import { ArticleMeta, Breadcrumbs, PageIntro } from "@/components/ui/content";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} Terms of Service`,
   description: `Terms of Service for using ${siteConfig.name}.`,
-  alternates: { canonical: `${siteConfig.domain}/terms` }
+  alternates: { canonical: `${siteConfig.domain}/terms/` }
 };
 
 export default function TermsPage() {
@@ -17,6 +18,7 @@ export default function TermsPage() {
         title="Terms of Service"
         description={`These terms explain how to use ${siteConfig.name}, an unofficial fan-made Roblox information site for ${siteConfig.gameName}.`}
       />
+      <ArticleMeta {...pageDates.terms} />
 
       <section className="mt-10 grid gap-4">
         <article className="content-card">

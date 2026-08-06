@@ -18,6 +18,7 @@ export function Footer() {
               <Link href="/trello" className="hover:text-white">Trello/Discord</Link>
               <Link href="/calculator" className="hover:text-white">Calculator</Link>
               <Link href="/guides" className="hover:text-white">Guides</Link>
+              <Link href="/faq" className="hover:text-white">FAQ</Link>
             </div>
           </div>
           <div>
@@ -40,9 +41,11 @@ export function Footer() {
             <h3 className="text-sm font-bold text-white">Site info</h3>
             <div className="mt-3 grid gap-2 text-sm text-white/62">
               <Link href="/sources" className="hover:text-white">Sources</Link>
+              <Link href="/about" className="hover:text-white">About Michell</Link>
               <Link href="/trello" className="hover:text-white">Community status</Link>
               <Link href="/contact" className="hover:text-white">Contact</Link>
               <Link href="/privacy" className="hover:text-white">Privacy</Link>
+              <Link href="/terms" className="hover:text-white">Terms</Link>
               <Link href="/disclosure" className="hover:text-white">Fan-made disclosure</Link>
             </div>
           </div>

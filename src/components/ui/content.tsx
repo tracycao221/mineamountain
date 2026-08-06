@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { editorialConfig } from "@/data/editorial";
 
 export function PageIntro({
   eyebrow,
@@ -64,5 +65,52 @@ export function Breadcrumbs({ items }: { items: { label: string; href: string }[
         </span>
       ))}
     </nav>
+  );
+}
+
+export function ArticleMeta({
+  published,
+  updated,
+  sourcesChecked = editorialConfig.sourcesChecked
+}: {
+  published: string;
+  updated: string;
+  sourcesChecked?: string;
+}) {
+  return (
+    <aside className="article-meta" aria-label="Article information">
+      <div>
+        <span>Written by</span>
+        <Link href={editorialConfig.author.url}>{editorialConfig.author.name}</Link>
+      </div>
+      <div>
+        <span>Published</span>
+        <time dateTime={published}>{published}</time>
+      </div>
+      <div>
+        <span>Last updated</span>
+        <time dateTime={updated}>{updated}</time>
+      </div>
+      <div>
+        <span>Sources checked</span>
+        <time dateTime={sourcesChecked}>{sourcesChecked}</time>
+      </div>
+    </aside>
+  );
+}
+
+export function EvidenceLabel({
+  level,
+  children
+}: {
+  level: "Confirmed" | "Practical inference" | "Needs verification";
+  children?: ReactNode;
+}) {
+  const className = level === "Confirmed" ? "evidence-confirmed" : level === "Practical inference" ? "evidence-inference" : "evidence-pending";
+  return (
+    <p className={`evidence-label ${className}`}>
+      <strong>{level}</strong>
+      {children ? <span>{children}</span> : null}
+    </p>
   );
 }

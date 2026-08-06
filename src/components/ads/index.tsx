@@ -301,102 +301,24 @@ export function AdsterraNative1() {
   );
 }
 
-function usePreferredRailSize() {
-  const [size, setSize] = useState<"160x300" | "160x600" | null>(null);
+const monetizableRoutePrefixes = ["/codes", "/tier-list", "/calculator", "/guides", "/wiki", "/faq", "/updates", "/trello"];
 
-  useEffect(() => {
-    const widthQuery = window.matchMedia("(min-width: 1680px)");
-    const heightQuery = window.matchMedia("(min-height: 760px)");
-    const chooseSize = () => {
-      if (!runtimeConfig.adsterraEnableStickyRail || !widthQuery.matches) {
-        setSize(null);
-        return;
-      }
-      setSize(heightQuery.matches ? "160x600" : "160x300");
-    };
-
-    chooseSize();
-    widthQuery.addEventListener("change", chooseSize);
-    heightQuery.addEventListener("change", chooseSize);
-    return () => {
-      widthQuery.removeEventListener("change", chooseSize);
-      heightQuery.removeEventListener("change", chooseSize);
-    };
-  }, []);
-
-  return size;
-}
-
-function AdsterraRail() {
-  const size = usePreferredRailSize();
-  if (!size) return null;
-  return (
-    <div className="ad-sticky-rail">
-      <AdsterraBannerUnit size={size} />
-    </div>
-  );
-}
-
-const cleanRoutePrefixes = ["/about", "/contact", "/disclosure", "/privacy", "/sources", "/terms"];
-
-function isCleanRoute(pathname: string) {
-  return cleanRoutePrefixes.some(
+function isMonetizableRoute(pathname: string) {
+  if (pathname === "/") return true;
+  return monetizableRoutePrefixes.some(
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
   );
 }
 
-function appendExternalScript(id: string, src: string) {
-  if (document.getElementById(id)) return;
-  const script = document.createElement("script");
-  script.id = id;
-  script.src = src;
-  script.async = true;
-  document.body.appendChild(script);
-}
-
-export function AdsterraGlobalScripts() {
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (isCleanRoute(pathname)) return;
-
-    if (runtimeConfig.adsterraEnableSocialBar && runtimeConfig.adsterraSocialBarScriptUrl) {
-      appendExternalScript("adsterra-social-bar", runtimeConfig.adsterraSocialBarScriptUrl);
-    }
-
-    if (!runtimeConfig.adsterraEnablePopunder || !runtimeConfig.adsterraPopunderScriptUrl) return;
-
-    const storageKey = "mineamountain:adsterra-pageviews";
-    const currentPageviews = Number.parseInt(sessionStorage.getItem(storageKey) ?? "0", 10) || 0;
-    const nextPageviews = currentPageviews + 1;
-    sessionStorage.setItem(storageKey, String(nextPageviews));
-    if (nextPageviews < runtimeConfig.adsterraPopunderMinPageviews) return;
-
-    const timer = window.setTimeout(() => {
-      appendExternalScript("adsterra-popunder", runtimeConfig.adsterraPopunderScriptUrl);
-    }, runtimeConfig.adsterraPopunderDelayMs);
-
-    return () => window.clearTimeout(timer);
-  }, [pathname]);
-
-  return null;
-}
-
 export function AdsterraPageFrame({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  if (isCleanRoute(pathname)) return <>{children}</>;
+  if (runtimeConfig.adsenseReviewMode) return <>{children}</>;
+  if (!isMonetizableRoute(pathname)) return <>{children}</>;
 
   return (
     <>
-      <div className="ad-global-top">
-        <AdsterraLeaderboard />
-      </div>
-      <AdsterraRail />
       {children}
       <section className="ad-global-footer" aria-label="Sponsored content">
-        <div className="ad-global-native">
-          <AdsterraNative1 />
-        </div>
         <div className="ad-global-rectangle">
           <AdsterraBanner />
         </div>

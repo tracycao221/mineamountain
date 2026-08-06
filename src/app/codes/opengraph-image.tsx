@@ -29,7 +29,7 @@ export default function Image() {
           {`${siteConfig.gameName} Codes`}
         </div>
         <div style={{ marginTop: 28, maxWidth: 900, fontSize: 30, lineHeight: 1.35, color: "rgba(255,255,255,0.76)" }}>
-          Verified active codes, source notes, and redemption guidance.
+          Checked code status, evidence notes, and safe redemption guidance.
         </div>
       </div>
     ),
