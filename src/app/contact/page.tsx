@@ -21,22 +21,29 @@ export default function ContactPage() {
       />
       <ArticleMeta {...pageDates.contact} />
       <section className="mt-10 content-card">
-        <h2 className="text-2xl font-bold text-white">Send a correction that can be checked</h2>
+        <h2 className="text-2xl font-bold text-white">Email Michell</h2>
         <p className="mt-3 leading-7 text-white/68">
           Include the page URL, the claim that needs correction, the source that supports the change, and the date you checked it.
         </p>
         <a
-          href={editorialConfig.contactUrl}
-          target="_blank"
-          rel="noreferrer"
+          href={editorialConfig.publicContactHref}
           className="button-primary mt-5"
         >
-          Open the public correction form
+          Email {editorialConfig.publicContactEmail}
         </a>
         <p className="mt-4 text-sm leading-6 text-white/52">
-          This opens the site&apos;s public GitHub issue form. Do not include Roblox passwords, payment details,
-          private account information, or anything you do not want posted publicly.
+          This opens your normal email app; no website login is required. Do not include Roblox passwords,
+          payment details, authentication codes, or private account information.
         </p>
+      </section>
+      <section className="mt-6 content-card">
+        <h2 className="text-xl font-bold text-white">Public correction option</h2>
+        <p className="mt-2 leading-7 text-white/68">
+          If the correction can be discussed publicly, you can also open a GitHub issue. Messages posted there are visible to everyone.
+        </p>
+        <a href={editorialConfig.contactUrl} target="_blank" rel="noreferrer" className="button-secondary mt-5">
+          Open a public GitHub issue
+        </a>
       </section>
       <section className="mt-6 content-card">
         <h2 className="text-xl font-bold text-white">Official game support</h2>

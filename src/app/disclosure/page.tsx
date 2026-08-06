@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
-import { pageDates } from "@/data/editorial";
+import { editorialConfig, pageDates } from "@/data/editorial";
 import { ArticleMeta, Breadcrumbs, PageIntro } from "@/components/ui/content";
 
 export const metadata: Metadata = {
@@ -28,6 +28,9 @@ export default function DisclosurePage() {
         <p className="mt-3 leading-7 text-white/68">
           Advertising is paused during AdSense review. If sponsored links or advertising are enabled later,
           they will be identified and will not change the site&apos;s evidence standards or official-source boundary.
+        </p>
+        <p className="mt-3 leading-7 text-white/68">
+          Editorial corrections can be sent to <a className="text-[color:var(--accent-2)] hover:underline" href={editorialConfig.publicContactHref}>{editorialConfig.publicContactEmail}</a>.
         </p>
       </section>
       <section className="mt-6 grid gap-4 sm:grid-cols-2">

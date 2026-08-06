@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { officialLinks, siteConfig } from "@/data/site";
+import { editorialConfig } from "@/data/editorial";
 
 export function Footer() {
   return (
@@ -44,6 +45,7 @@ export function Footer() {
               <Link href="/about" className="hover:text-white">About Michell</Link>
               <Link href="/trello" className="hover:text-white">Community status</Link>
               <Link href="/contact" className="hover:text-white">Contact</Link>
+              <a href={editorialConfig.publicContactHref} className="hover:text-white">Email Michell</a>
               <Link href="/privacy" className="hover:text-white">Privacy</Link>
               <Link href="/terms" className="hover:text-white">Terms</Link>
               <Link href="/disclosure" className="hover:text-white">Fan-made disclosure</Link>

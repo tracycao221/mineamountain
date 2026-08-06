@@ -33,7 +33,10 @@ requireText("src/app/privacy/page.tsx", [
   "Google-certified consent management platform"
 ]);
 requireText("src/app/about/page.tsx", ["Michell", "stable pen name", "The editor checks"]);
-requireText("src/app/contact/page.tsx", ["editorialConfig.contactUrl", "public correction form"]);
+requireText("src/data/editorial.ts", ["contact@mineamountain.com", "mailto:contact@mineamountain.com"]);
+requireText("src/app/contact/page.tsx", ["editorialConfig.publicContactHref", "no website login is required", "editorialConfig.contactUrl"]);
+requireText("src/app/privacy/page.tsx", ["Cloudflare Email Routing", "visitor database"]);
+requireText("src/components/layout/Footer.tsx", ["editorialConfig.publicContactHref", "Email Michell"]);
 requireText("src/app/sitemap.ts", ["lastModified: route.lastModified"]);
 
 const sitemapSource = read("src/app/sitemap.ts");
@@ -41,6 +44,8 @@ if (sitemapSource.includes("new Date()")) failures.push("src/app/sitemap.ts: use
 
 const layoutSource = read("src/app/layout.tsx");
 if (layoutSource.includes("AdsterraGlobalScripts")) failures.push("src/app/layout.tsx: global ad scripts remain mounted");
+const jsonLdSource = read("src/components/seo/JsonLd.tsx");
+if (jsonLdSource.includes("SearchAction") || jsonLdSource.includes("/search?q=")) failures.push("src/components/seo/JsonLd.tsx: advertises a missing site search route");
 const adComponentSource = read("src/components/ads/index.tsx");
 if (adComponentSource.includes("<AdsterraRail")) failures.push("src/components/ads/index.tsx: sticky rail remains mounted");
 if (adComponentSource.includes("<AdsterraNative1")) failures.push("src/components/ads/index.tsx: native ad remains mounted");
@@ -105,6 +110,7 @@ for (const path of htmlFiles) {
   for (const forbidden of ["highperformanceformat.com", "effectivecpmnetwork.com", "ad-shell", ">Advertisement<"]) {
     if (html.includes(forbidden)) failures.push(`${path.replace(`${root}/`, "")}: review-mode HTML contains ${forbidden}`);
   }
+  if (html.includes("SearchAction") || html.includes("/search?q=")) failures.push(`${path.replace(`${root}/`, "")}: rendered HTML advertises a missing site search route`);
 }
 
 if (failures.length) {

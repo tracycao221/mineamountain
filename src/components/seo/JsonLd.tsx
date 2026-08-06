@@ -18,12 +18,7 @@ export function WebSiteJsonLd() {
         "@type": "WebSite",
         name: siteConfig.name,
         url: siteConfig.domain,
-        description: siteConfig.description,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${siteConfig.domain}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string"
-        }
+        description: siteConfig.description
       }}
     />
   );
@@ -130,12 +125,18 @@ export function ArticleJsonLd({
         author: {
           "@type": "Person",
           name: editorialConfig.author.name,
-          url: `${siteConfig.domain}${editorialConfig.author.url}`
+          url: `${siteConfig.domain}${editorialConfig.author.url}`,
+          email: editorialConfig.publicContactEmail
         },
         publisher: {
           "@type": "Organization",
           name: siteConfig.name,
-          url: siteConfig.domain
+          url: siteConfig.domain,
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "editorial",
+            email: editorialConfig.publicContactEmail
+          }
         }
       }}
     />

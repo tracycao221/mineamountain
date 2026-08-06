@@ -54,7 +54,7 @@ export default function AboutPage() {
           <h2 className="text-xl font-bold text-white">Corrections</h2>
           <p className="mt-2 leading-7 text-white/68">
             If a page has an outdated code, wrong source status, missing creator link, or unclear upgrade note,
-            use the public correction channel with the page URL, the claim, a supporting source, and the date checked.
+            email {editorialConfig.publicContactEmail} with the page URL, the claim, a supporting source, and the date checked.
           </p>
           <Link href="/contact/" className="button-secondary mt-5">Open contact options</Link>
         </article>

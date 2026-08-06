@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
-import { pageDates } from "@/data/editorial";
+import { editorialConfig, pageDates } from "@/data/editorial";
 import { ArticleMeta, Breadcrumbs, PageIntro } from "@/components/ui/content";
 
 export const metadata: Metadata = {
@@ -77,6 +77,15 @@ export default function PrivacyPage() {
           </p>
         </article>
         <article className="content-card">
+          <h2 className="text-xl font-bold text-white">Email contact</h2>
+          <p className="mt-2 leading-7 text-white/68">
+            Messages sent to {editorialConfig.publicContactEmail} are routed by Cloudflare Email Routing to the
+            site operator&apos;s private mailbox. The sender address, message content, and normal email metadata may
+            be retained as needed to answer, document a correction, prevent abuse, or meet legal obligations.
+            The website does not copy those messages into a visitor database.
+          </p>
+        </article>
+        <article className="content-card">
           <h2 className="text-xl font-bold text-white">No Roblox account handling</h2>
           <p className="mt-2 leading-7 text-white/68">Do not enter Roblox passwords, payment details, authentication codes, or account recovery information on this site or in the public correction form.</p>
         </article>
@@ -87,8 +96,9 @@ export default function PrivacyPage() {
         <article className="content-card">
           <h2 className="text-xl font-bold text-white">Privacy questions</h2>
           <p className="mt-2 leading-7 text-white/68">
-            Use the contact page to ask a privacy question or report an inaccurate disclosure. The correction
-            channel is public, so do not include sensitive personal information.
+            Email <a className="text-[color:var(--accent-2)] hover:underline" href={editorialConfig.publicContactHref}>{editorialConfig.publicContactEmail}</a> to
+            ask a privacy question or report an inaccurate disclosure. Do not include passwords, payment details,
+            authentication codes, or other sensitive account information.
           </p>
         </article>
       </section>

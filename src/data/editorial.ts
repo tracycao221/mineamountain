@@ -8,6 +8,8 @@ export const editorialConfig = {
   firstPublished: "2026-06-27",
   lastReviewed: "2026-08-06",
   sourcesChecked: "2026-08-06",
+  publicContactEmail: "contact@mineamountain.com",
+  publicContactHref: "mailto:contact@mineamountain.com?subject=Mine%20a%20Mountain%20Wiki%20feedback",
   contactUrl: "https://github.com/tracycao221/mineamountain/issues/new",
   officialSnapshot: {
     capturedAt: "2026-08-06T10:21:58Z",
