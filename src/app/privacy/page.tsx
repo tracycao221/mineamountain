@@ -24,10 +24,9 @@ export default function PrivacyPage() {
         <article className="content-card">
           <h2 className="text-xl font-bold text-white">Current advertising status</h2>
           <p className="mt-2 leading-7 text-white/68">
-            Third-party advertising is paused while the site is prepared for Google AdSense review. Adsterra
-            banners, native ads, sponsored links, Social Bar, and Popunder formats are not loaded in review mode.
-            If advertising is enabled later, this policy and the site&apos;s consent controls will be updated before
-            personalized ads are served where consent is required.
+            The site does not currently load third-party advertising scripts or display ad placements while it is
+            prepared for Google AdSense review. If advertising is enabled later, this policy and the site&apos;s consent
+            controls will be updated before personalized ads are served where consent is required.
           </p>
         </article>
         <article className="content-card">
@@ -112,7 +111,7 @@ export default function PrivacyPage() {
           <p className="mt-2 text-sm leading-6 text-white/66">Send a correction with a supporting link and check date.</p>
         </Link>
       </section>
-      <p className="mt-8 text-sm text-white/48">Effective and last updated: August 6, 2026.</p>
+      <p className="mt-8 text-sm text-white/48">Effective and last updated: August 7, 2026.</p>
     </main>
   );
 }

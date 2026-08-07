@@ -42,6 +42,25 @@ export default function AboutPage() {
         </article>
 
         <article className="content-card">
+          <h2 className="text-xl font-bold text-white">The four-step editorial workflow</h2>
+          <ol className="mt-4 grid gap-4 text-sm leading-6 text-white/68 sm:grid-cols-2">
+            <li><strong className="text-white">1. Capture:</strong> record the official page, API field, or Roblox-hosted image together with the date it was checked.</li>
+            <li><strong className="text-white">2. Classify:</strong> mark a statement as confirmed, practical inference, or still needing verification.</li>
+            <li><strong className="text-white">3. Publish narrowly:</strong> state only what the evidence supports and name important limits beside the claim.</li>
+            <li><strong className="text-white">4. Recheck:</strong> revisit code and update claims after a visible game change, creator announcement, or sourced correction.</li>
+          </ol>
+        </article>
+
+        <article className="content-card">
+          <h2 className="text-xl font-bold text-white">How a correction changes a page</h2>
+          <p className="mt-2 leading-7 text-white/68">
+            A correction is compared with the current published claim and its source. If stronger evidence changes
+            the answer, the affected page receives a real update date and the old unsupported wording is removed.
+            If the evidence is incomplete, the uncertainty stays visible rather than being resolved by guesswork.
+          </p>
+        </article>
+
+        <article className="content-card">
           <h2 className="text-xl font-bold text-white">What the site does not claim</h2>
           <p className="mt-2 leading-7 text-white/68">
             Michell does not claim to be a game developer, Roblox employee, or official support representative.

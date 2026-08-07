@@ -62,6 +62,48 @@ export default function CrystalsWikiPage() {
         </div>
       </section>
 
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Media observation matrix"
+          title="Visible details separated from unsupported conclusions"
+          copy="These observations come from Roblox-hosted promotional frames. The right column records where the evidence stops."
+        />
+        <div className="mt-6 overflow-x-auto rounded-lg border border-white/10">
+          <table className="w-full min-w-[820px] text-left text-sm">
+            <thead className="bg-white/[0.06] text-white">
+              <tr>
+                <th className="px-4 py-3">Visible observation</th>
+                <th className="px-4 py-3">Limited conclusion supported</th>
+                <th className="px-4 py-3">Not established by the image</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10 text-white/68">
+              <tr>
+                <td className="px-4 py-4 align-top">Crystal-like objects appear at several mountain heights.</td>
+                <td className="px-4 py-4 align-top">Height and route access can be part of a crystal decision.</td>
+                <td className="px-4 py-4 align-top">No spawn table, zone boundary, or height-based value formula.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 align-top">The media uses multiple colors and shapes.</td>
+                <td className="px-4 py-4 align-top">The game presents visually distinct crystal finds.</td>
+                <td className="px-4 py-4 align-top">No official rarity names, order, odds, or sell-price ranking.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 align-top">One frame labels a crystal as 90.3 KG.</td>
+                <td className="px-4 py-4 align-top">Weight is a visible property in official marketing.</td>
+                <td className="px-4 py-4 align-top">No price-per-kilogram rule or proof that heavier always means more profitable.</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 align-top">A character is shown with a backpack and pickaxe.</td>
+                <td className="px-4 py-4 align-top">Mining and carrying belong to the advertised crystal loop.</td>
+                <td className="px-4 py-4 align-top">No exact tool power, backpack capacity, or optimal loadout.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <EvidenceLabel level="Confirmed">Images rechecked on August 7, 2026; conclusions remain limited to what is visible.</EvidenceLabel>
+      </section>
+
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <article className="content-card">
           <h2 className="text-xl font-bold text-white">Confirmed facts</h2>

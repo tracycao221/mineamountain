@@ -92,8 +92,4 @@ export type GameConfig = {
     discord?: string;
     trello?: string;
   };
-  ads: {
-    publisher: string;
-    usesRuntimeConfig: boolean;
-  };
 };

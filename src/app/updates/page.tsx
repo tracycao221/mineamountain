@@ -19,6 +19,12 @@ const updateFaqs = [
 
 const updateNotes = [
   {
+    date: "2026-08-07",
+    title: "Evidence-led guide and calculator update",
+    label: "Editorial change",
+    body: "Michell added a dated code-check ledger, controlled upgrade worksheet, official-media crystal observations, and a browser-only two-run comparison tool. Dormant third-party advertising code was removed from this site while AdSense review remains pending."
+  },
+  {
     date: "2026-08-06",
     title: "Full source and content review",
     label: "Editorial change",

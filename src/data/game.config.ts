@@ -26,9 +26,5 @@ export const gameConfig: GameConfig = {
     officialGameUrl: "https://www.roblox.com/games/125927821145949/Mine-a-Mountain",
     discord: "#",
     trello: "#"
-  },
-  ads: {
-    publisher: "Adsterra",
-    usesRuntimeConfig: true
   }
 };

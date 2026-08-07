@@ -15,16 +15,12 @@ function requireText(relativePath, patterns) {
   }
 }
 
-requireText(".env.example", ["NEXT_PUBLIC_ADSENSE_REVIEW_MODE=true"]);
-requireText("src/app/layout.tsx", ["runtimeConfig.adsenseReviewMode"]);
-requireText("src/lib/runtime-config.ts", [
-  "adsterraEnablePopunder: false",
-  "adsterraEnableSocialBar: false",
-  "adsterraEnableStickyRail: false",
-  "adsterraSmartLinkUrl: undefined"
-]);
+requireText(".env.example", ["NEXT_PUBLIC_ANALYTICS_ID="]);
+requireText("src/app/layout.tsx", ["<Navbar />", "{children}", "<Footer />"]);
+requireText("src/lib/runtime-config.ts", ["NEXT_PUBLIC_ANALYTICS_ID"]);
 requireText("src/app/privacy/page.tsx", [
   "Google AdSense",
+  "does not currently load third-party advertising scripts",
   "cookies",
   "web beacons",
   "IP addresses",
@@ -38,18 +34,23 @@ requireText("src/app/contact/page.tsx", ["editorialConfig.publicContactHref", "n
 requireText("src/app/privacy/page.tsx", ["Cloudflare Email Routing", "visitor database"]);
 requireText("src/components/layout/Footer.tsx", ["editorialConfig.publicContactHref", "Email Michell"]);
 requireText("src/app/sitemap.ts", ["lastModified: route.lastModified"]);
+requireText("public/ads.txt", ["google.com, pub-7762683401538954, DIRECT, f08c47fec0942fa0"]);
+
+for (const removedPath of [
+  "adsterra_placement_manifest.json",
+  "src/components/ads/index.tsx",
+  "src/data/adsterra.config.ts"
+]) {
+  if (existsSync(join(root, removedPath))) failures.push(`${removedPath}: dormant third-party ad implementation still exists`);
+}
 
 const sitemapSource = read("src/app/sitemap.ts");
 if (sitemapSource.includes("new Date()")) failures.push("src/app/sitemap.ts: uses build-time new Date()");
 
 const layoutSource = read("src/app/layout.tsx");
-if (layoutSource.includes("AdsterraGlobalScripts")) failures.push("src/app/layout.tsx: global ad scripts remain mounted");
+if (layoutSource.includes("components/ads") || layoutSource.includes("adsenseReviewMode")) failures.push("src/app/layout.tsx: dormant ad switch or component remains mounted");
 const jsonLdSource = read("src/components/seo/JsonLd.tsx");
 if (jsonLdSource.includes("SearchAction") || jsonLdSource.includes("/search?q=")) failures.push("src/components/seo/JsonLd.tsx: advertises a missing site search route");
-const adComponentSource = read("src/components/ads/index.tsx");
-if (adComponentSource.includes("<AdsterraRail")) failures.push("src/components/ads/index.tsx: sticky rail remains mounted");
-if (adComponentSource.includes("<AdsterraNative1")) failures.push("src/components/ads/index.tsx: native ad remains mounted");
-if (adComponentSource.includes("<AdsterraLeaderboard")) failures.push("src/components/ads/index.tsx: top leaderboard remains mounted");
 
 const redirects = read("public/_redirects");
 for (const legacyRoute of [
@@ -104,10 +105,29 @@ function walk(directory) {
   });
 }
 
+const productionSourceFiles = [
+  ...walk(join(root, "src")),
+  join(root, ".env.example")
+].filter((path) => existsSync(path) && statSync(path).isFile());
+
+for (const path of productionSourceFiles) {
+  const source = readFileSync(path, "utf8");
+  for (const forbidden of [
+    "Adsterra",
+    "adsterra",
+    "highperformanceformat.com",
+    "effectivecpmnetwork.com",
+    "NEXT_PUBLIC_ADSENSE_REVIEW_MODE",
+    "ad-shell"
+  ]) {
+    if (source.includes(forbidden)) failures.push(`${path.replace(`${root}/`, "")}: production source contains ${forbidden}`);
+  }
+}
+
 const htmlFiles = walk(join(root, "out")).filter((path) => path.endsWith(".html"));
 for (const path of htmlFiles) {
   const html = readFileSync(path, "utf8");
-  for (const forbidden of ["highperformanceformat.com", "effectivecpmnetwork.com", "ad-shell", ">Advertisement<"]) {
+  for (const forbidden of ["Adsterra", "highperformanceformat.com", "effectivecpmnetwork.com", "ad-shell", ">Advertisement<", "adsbygoogle", "pagead2.googlesyndication.com"]) {
     if (html.includes(forbidden)) failures.push(`${path.replace(`${root}/`, "")}: review-mode HTML contains ${forbidden}`);
   }
   if (html.includes("SearchAction") || html.includes("/search?q=")) failures.push(`${path.replace(`${root}/`, "")}: rendered HTML advertises a missing site search route`);

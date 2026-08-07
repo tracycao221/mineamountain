@@ -5,6 +5,27 @@ import { pageDates } from "@/data/editorial";
 import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { ArticleMeta, Breadcrumbs, EvidenceLabel, PageIntro, SectionHeader } from "@/components/ui/content";
 
+const codeVerificationLedger = [
+  {
+    surface: "Official Roblox description",
+    checked: "August 7, 2026",
+    observed: "The page describes climbing, crystals, cold, cash, three upgrade types, hourly mountains, and Digging Luck. It contains no reward code string or redeem instruction.",
+    boundary: "This confirms only that the public description does not announce a code. It does not prove that an in-game code menu can never exist."
+  },
+  {
+    surface: "Official Roblox promotional media",
+    checked: "August 7, 2026",
+    observed: "The available images show the mountain, crystals, a pickaxe, a backpack, and a crystal weight example. They do not show a code-entry screen.",
+    boundary: "Promotional frames are not a complete interface tour, so their silence cannot be used to claim that codes are impossible."
+  },
+  {
+    surface: "Verified creator links in this site's registry",
+    checked: "August 7, 2026",
+    observed: "No creator-owned Discord invite or Trello board has passed the site's ownership check.",
+    boundary: "Unverified community links and screenshots stay outside the active-code evidence chain."
+  }
+] as const;
+
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Codes & Code Status`,
   description: `Mine a Mountain codes and code status with active-code checks, no-fake-code policy, redeem steps, source-watch notes, and Discord verification guidance.`,
@@ -60,15 +81,61 @@ export default function CodesPage() {
           </div>
         ) : (
           <article className="content-card mt-6">
-            <span className="mini-label">Checked August 6, 2026</span>
+            <span className="mini-label">Checked August 7, 2026</span>
             <h2 className="mt-3 text-2xl font-extrabold text-white">No active code is confirmed</h2>
             <p className="mt-3 text-sm leading-6 text-white/68">
               We checked the official Roblox game listing and public source surfaces, but did not find a reliable active Mine a Mountain code.
               When a code is confirmed, it belongs here with its reward, source, and checked date. Until then, this page should answer code searches without inventing rewards.
             </p>
-            <EvidenceLabel level="Confirmed">No code string appears in the official Roblox description checked on August 6, 2026.</EvidenceLabel>
+            <EvidenceLabel level="Confirmed">No code string appears in the official Roblox description checked on August 7, 2026.</EvidenceLabel>
           </article>
         )}
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Verification ledger"
+          title="What was checked—and what each check can prove"
+          copy="A dated source trail is more useful than repeating 'no codes' without showing the limits of that conclusion."
+        />
+        <div className="mt-6 overflow-x-auto rounded-lg border border-white/10">
+          <table className="w-full min-w-[860px] text-left text-sm">
+            <thead className="bg-white/[0.06] text-white">
+              <tr>
+                <th className="px-4 py-3">Surface</th>
+                <th className="px-4 py-3">Checked</th>
+                <th className="px-4 py-3">Observed</th>
+                <th className="px-4 py-3">Evidence boundary</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10 text-white/68">
+              {codeVerificationLedger.map((entry) => (
+                <tr key={entry.surface}>
+                  <th scope="row" className="px-4 py-4 align-top font-semibold text-white">{entry.surface}</th>
+                  <td className="px-4 py-4 align-top whitespace-nowrap">{entry.checked}</td>
+                  <td className="px-4 py-4 align-top leading-6">{entry.observed}</td>
+                  <td className="px-4 py-4 align-top leading-6">{entry.boundary}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="mt-10 content-card">
+        <SectionHeader
+          eyebrow="Publication gate"
+          title="Five checks required before a code becomes active"
+          copy="A claim moves into the active table only when the evidence can answer every item below."
+        />
+        <ol className="mt-5 grid gap-3 text-sm leading-6 text-white/68 md:grid-cols-2">
+          <li><strong className="text-white">1. Exact string:</strong> capitalization, numbers, and punctuation are recorded.</li>
+          <li><strong className="text-white">2. Exact reward:</strong> the reward is named without guessing its value.</li>
+          <li><strong className="text-white">3. Owned source:</strong> the announcement traces to Roblox or a verified creator channel.</li>
+          <li><strong className="text-white">4. Current redeem path:</strong> the present interface shows where the string is entered.</li>
+          <li><strong className="text-white">5. Dated result:</strong> a successful or expired result has a visible check date.</li>
+        </ol>
+        <EvidenceLabel level="Needs verification">Until all five fields are available, the claim remains unlisted rather than being labeled active.</EvidenceLabel>
       </section>
 
       <section className="mt-10">
@@ -77,7 +144,7 @@ export default function CodesPage() {
           title="What to do when a Mine a Mountain code claim appears"
           copy="Use the claim itself, its source, and the current in-game interface before treating a reward string as active."
         />
-        <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
+        <div className="mt-6 overflow-x-auto rounded-lg border border-white/10">
           <table className="w-full min-w-[720px] text-left text-sm">
             <thead className="bg-white/[0.06] text-white">
               <tr>

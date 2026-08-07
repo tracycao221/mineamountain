@@ -56,12 +56,12 @@ export default function SourcesPage() {
 
       <section className="mt-10 grid gap-4 lg:grid-cols-2">
         <article className="content-card">
-          <h2 className="text-xl font-bold text-white">Official data checked on August 6, 2026</h2>
+          <h2 className="text-xl font-bold text-white">Official sources checked on August 7, 2026</h2>
           <ul className="mt-4 grid gap-3 text-sm leading-6 text-white/68">
-            <li>Roblox game listing for experience identity, creator, description, and public availability.</li>
-            <li>Roblox games API for updated time, players, visits, and favorites.</li>
-            <li>Roblox votes API for positive and negative vote counts.</li>
-            <li>Roblox game media and thumbnails APIs for official promotional images.</li>
+            <li>The Roblox game listing was rechecked for experience identity, creator, description, and the current public wording.</li>
+            <li>The Roblox place-to-universe endpoint confirmed universe ID 10187294555 for place 125927821145949.</li>
+            <li>Roblox-hosted promotional images were rechecked for the visible mountain, tool, backpack, crystal, and weight observations used in the guides.</li>
+            <li>The dated games and votes snapshot captured August 6 remains labeled as a snapshot; it was not silently presented as a live counter.</li>
           </ul>
           <EvidenceLabel level="Confirmed">Primary sources are recorded with a check date.</EvidenceLabel>
         </article>
@@ -99,6 +99,46 @@ export default function SourcesPage() {
             <h2 className="mt-3 text-xl font-bold text-white">Label confidence</h2>
             <p className="mt-2 text-sm leading-6 text-white/65">Videos and posts can explain player language, but they stay labelled until stronger evidence confirms the fact.</p>
           </article>
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Claim decision record"
+          title="How evidence changes what readers see"
+          copy="The same source can support a narrow fact while remaining too weak for a price, ranking, or active-code claim."
+        />
+        <div className="mt-6 overflow-x-auto rounded-lg border border-white/10">
+          <table className="w-full min-w-[840px] text-left text-sm">
+            <thead className="bg-white/[0.06] text-white">
+              <tr>
+                <th className="px-4 py-3">Evidence state</th>
+                <th className="px-4 py-3">Page treatment</th>
+                <th className="px-4 py-3">Example</th>
+                <th className="px-4 py-3">Update trigger</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10 text-white/68">
+              <tr>
+                <th scope="row" className="px-4 py-4 align-top font-semibold text-white">Confirmed</th>
+                <td className="px-4 py-4 align-top">Publish the narrow fact with its source and check date.</td>
+                <td className="px-4 py-4 align-top">The official description names Warmth, Pickaxe, and Backpack upgrades.</td>
+                <td className="px-4 py-4 align-top">Official wording or the visible mechanic changes.</td>
+              </tr>
+              <tr>
+                <th scope="row" className="px-4 py-4 align-top font-semibold text-white">Practical inference</th>
+                <td className="px-4 py-4 align-top">Explain the reasoning and avoid guaranteed outcomes.</td>
+                <td className="px-4 py-4 align-top">Test Warmth first when cold repeatedly ends a comparable route.</td>
+                <td className="px-4 py-4 align-top">Repeatable observations contradict the advice.</td>
+              </tr>
+              <tr>
+                <th scope="row" className="px-4 py-4 align-top font-semibold text-white">Needs verification</th>
+                <td className="px-4 py-4 align-top">Withhold the value or keep the claim outside the active list.</td>
+                <td className="px-4 py-4 align-top">Exact upgrade costs, crystal prices, spawn odds, and code rewards.</td>
+                <td className="px-4 py-4 align-top">A current shop, sell screen, redeem result, or stronger owned source becomes available.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
     </main>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
-import { pageDates } from "@/data/editorial";
+import { editorialConfig, pageDates } from "@/data/editorial";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { ArticleMeta, Breadcrumbs, EvidenceLabel, PageIntro, SectionHeader } from "@/components/ui/content";
 
@@ -74,6 +74,62 @@ export default function UpgradesWikiPage() {
               <li>4. Re-diagnose after the hourly mountain changes.</li>
             </ol>
           </article>
+        </div>
+      </section>
+
+      <section className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div>
+          <SectionHeader
+            eyebrow="Official visual evidence"
+            title="The media supports upgrade roles, not upgrade numbers"
+            copy="Roblox-hosted promotional media visibly connects the route with a pickaxe, a backpack, crystals, and a changed mountain state. It does not display shop prices, power tiers, or capacity tiers."
+          />
+          <EvidenceLabel level="Confirmed">The visible tools support the mechanic categories; exact performance remains outside the evidence.</EvidenceLabel>
+        </div>
+        <figure className="official-media">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={editorialConfig.officialMedia[0].src} alt={editorialConfig.officialMedia[0].alt} width="768" height="432" />
+          <figcaption>{editorialConfig.officialMedia[0].caption} Source: Roblox-hosted game media, rechecked August 7, 2026.</figcaption>
+        </figure>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Controlled comparison"
+          title="A repeatable worksheet for the next upgrade"
+          copy="Change one upgrade category, keep the route as similar as possible, and compare the first constraint instead of relying on a universal tier order."
+        />
+        <div className="mt-6 overflow-x-auto rounded-lg border border-white/10">
+          <table className="w-full min-w-[860px] text-left text-sm">
+            <thead className="bg-white/[0.06] text-white">
+              <tr>
+                <th className="px-4 py-3">Upgrade tested</th>
+                <th className="px-4 py-3">Hold constant</th>
+                <th className="px-4 py-3">Record before and after</th>
+                <th className="px-4 py-3">Useful interpretation</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10 text-white/68">
+              <tr>
+                <th scope="row" className="px-4 py-4 align-top font-semibold text-white">Warmth</th>
+                <td className="px-4 py-4 align-top">Route, main tool, and intended return point.</td>
+                <td className="px-4 py-4 align-top">Where cold forced the turn and whether the run returned to sell.</td>
+                <td className="px-4 py-4 align-top">A later safe turn supports the Warmth choice; it does not prove the best cash rate.</td>
+              </tr>
+              <tr>
+                <th scope="row" className="px-4 py-4 align-top font-semibold text-white">Pickaxe</th>
+                <td className="px-4 py-4 align-top">Visible crystal type, route position, and other equipment.</td>
+                <td className="px-4 py-4 align-top">Approximate mining time and whether mining remained the first delay.</td>
+                <td className="px-4 py-4 align-top">A repeatably shorter break supports the role; one different crystal does not.</td>
+              </tr>
+              <tr>
+                <th scope="row" className="px-4 py-4 align-top font-semibold text-white">Backpack</th>
+                <td className="px-4 py-4 align-top">Route, mining choices, and planned run length.</td>
+                <td className="px-4 py-4 align-top">Capacity-forced returns and completed sell trips.</td>
+                <td className="px-4 py-4 align-top">Fewer capacity interruptions supports the purchase only when the route stayed comparable.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
