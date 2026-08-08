@@ -86,6 +86,25 @@ export default function GuidesPage() {
           <article className="content-card"><h2 className="text-xl font-bold text-white">Missing values</h2><p className="mt-3 text-sm leading-6 text-white/66">Unverified costs, prices, odds, and level tables stay out of indexed pages.</p><EvidenceLabel level="Needs verification" /></article>
         </div>
       </section>
+
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Other Roblox guides"
+          title="A related progression guide for a different game"
+          copy="This is an editorial recommendation for players who also enjoy task-based Roblox progression; it is not a Mine a Mountain source."
+        />
+        <a
+          href="https://washthehouse.com/beginner-guide/"
+          className="content-card mt-6 block"
+          rel="noopener"
+        >
+          <span className="mini-label">Independent fan guide</span>
+          <h2 className="mt-3 text-xl font-bold text-white">WashTheHouse beginner route</h2>
+          <p className="mt-2 text-sm leading-6 text-white/65">
+            Learn the first 15 minutes of Wash The House, including controls, item returns, power-washer use, and early upgrades.
+          </p>
+        </a>
+      </section>
     </main>
   );
 }
